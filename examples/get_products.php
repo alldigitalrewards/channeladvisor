@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "fKPsNTG2OjXeMWIYtH9HDfvfcMjSlF3UJkuBZFCOZzA",
