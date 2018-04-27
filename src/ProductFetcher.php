@@ -12,10 +12,10 @@ class ProductFetcher extends AbstractService
     {
         // This expects we operate on UTC (which we do)
         $timestamp = subStr(
-                $dateTime->format("c"),
-                0,
-                19
-            ) . "Z";
+            $dateTime->format("c"),
+            0,
+            19
+        ) . "Z";
 
         $nextLink = Client::API_URL .
             '/v1/Products?$filter=' .
