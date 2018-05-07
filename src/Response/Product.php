@@ -265,7 +265,7 @@ class Product extends AbstractEntity
     /**
      * @var float
      */
-    private $StorePrice;
+    private $StorePrice = 0;
     /**
      * @var float
      *
@@ -383,7 +383,7 @@ class Product extends AbstractEntity
     /**
      * @var array
      */
-    private $Images;
+    private $Images = [];
     /**
      * @var array
      *
