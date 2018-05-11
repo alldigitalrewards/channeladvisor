@@ -674,9 +674,9 @@ class Product extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return string | null
      */
-    public function getBrand(): string
+    public function getBrand()
     {
         return $this->Brand;
     }
@@ -706,9 +706,9 @@ class Product extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return string | null
      */
-    public function getDescription(): string
+    public function getDescription()
     {
         return $this->Description;
     }
