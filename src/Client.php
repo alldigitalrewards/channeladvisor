@@ -125,4 +125,12 @@ class Client
 
         $this->accessToken = new AccessToken($response);
     }
+
+    /**
+     * @param AccessToken $accessToken
+     */
+    public function setAccessToken(AccessToken $accessToken)
+    {
+        $this->accessToken = $accessToken;
+    }
 }
