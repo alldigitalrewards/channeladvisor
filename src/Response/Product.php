@@ -1062,6 +1062,10 @@ class Product extends AbstractEntity
      */
     public function getRetailPrice(): float
     {
+        if (is_null($this->RetailPrice)) {
+            return 0;
+        }
+
         return $this->RetailPrice;
     }
 
