@@ -3,7 +3,6 @@
 namespace AllDigitalRewards\ChannelAdvisor;
 
 use AllDigitalRewards\ChannelAdvisor\Response\AccessToken;
-use GuzzleHttp\Psr7\Request;
 
 class Client
 {
@@ -30,6 +29,8 @@ class Client
      */
     private $httpClient;
 
+    private $accessTokenHeader;
+
     public function __construct(
         string $refresh_token,
         string $application_id,
@@ -38,33 +39,31 @@ class Client
         $this->refreshToken = $refresh_token;
         $this->applicationId = $application_id;
         $this->sharedSecret = $shared_secret;
+        $this->accessTokenHeader = $this->getAccessTokenAuthorizationHeader();
     }
 
-    public function sendRequest(Request $request): object
+    public function sendRequest($type, $url, $body = null): object
     {
-        $request = $request
-            ->withHeader(
-                'Authorization',
-                $this->getAccessTokenAuthorizationHeader()
-            )->withHeader(
-                'Accept',
-                'application/json'
-            )->withHeader(
-                'Content-Type',
-                'application/json'
-            );
-
-        $response = $this->getHttpClient()->send($request);
+        $response = $this->getHttpClient()->request(
+            $type,
+            $url,
+            [
+                'headers' => [
+                    'Authorization' => $this->accessTokenHeader,
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json'
+                ],
+                'form_params' => $body
+            ]
+        );
 
         $jsonObj = json_decode($response->getBody());
 
         if (!in_array($response->getStatusCode(), [200, 201])) {
-            if (!empty($jsonObj->Message)) {
-                throw new ClientException($jsonObj->Message);
+            $error = empty($jsonObj->Message) === false ? $jsonObj->Message : $jsonObj->error->message;
+            if (!empty($error)) {
+                throw new ClientException($error);
             }
-            throw new ClientException(
-                'Unknown exception occured. HTTP Status: ' . $response->getStatusCode()
-            );
         }
 
         return $jsonObj;

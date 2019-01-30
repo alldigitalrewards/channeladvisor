@@ -4,7 +4,6 @@ namespace AllDigitalRewards\ChannelAdvisor;
 
 use AllDigitalRewards\ChannelAdvisor\Collection\ProductCollection;
 use AllDigitalRewards\ChannelAdvisor\Response\Product;
-use GuzzleHttp\Psr7\Request;
 
 class ProductFetcher extends AbstractService
 {
@@ -29,15 +28,10 @@ class ProductFetcher extends AbstractService
     public function getProducts(string $nextLink = null)
     {
         if (is_null($nextLink)) {
-            $nextLink = Client::API_URL . '/v1/Products';
+            $nextLink = '/v1/Products';
         }
 
-        $request = new Request(
-            'GET',
-            $nextLink
-        );
-
-        $response = $this->client->sendRequest($request);
+        $response = $this->client->sendRequest('GET', $nextLink);
 
         if (empty($response->value)) {
             // Throw an exception.
@@ -49,12 +43,7 @@ class ProductFetcher extends AbstractService
 
     public function getProduct(string $product_id)
     {
-        $request = new Request(
-            'GET',
-            Client::API_URL . '/v1/Products(' . $product_id . ')'
-        );
-
-        $response = $this->client->sendRequest($request);
+        $response = $this->client->sendRequest('GET', Client::API_URL . '/v1/Products(' . $product_id . ')');
 
         return new Product($response);
     }
