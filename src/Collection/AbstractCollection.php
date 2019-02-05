@@ -2,7 +2,7 @@
 
 namespace AllDigitalRewards\ChannelAdvisor\Collection;
 
-use AllDigitalRewards\ChannelAdvisor\AbstractEntity;
+use AllDigitalRewards\ChannelAdvisor\Entities\AbstractEntity;
 
 abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \Countable
 {

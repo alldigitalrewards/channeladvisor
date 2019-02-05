@@ -2,7 +2,7 @@
 
 namespace AllDigitalRewards\ChannelAdvisor\Collection;
 
-use AllDigitalRewards\ChannelAdvisor\Response\Image;
+use AllDigitalRewards\ChannelAdvisor\Entities\Image;
 
 class ImageCollection extends AbstractCollection
 {

@@ -7,6 +7,6 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "2CKkHOXvzUKuDmN0080kyg"
 );
 
-$orders = $client->getOrders();
+$orderItems = $client->getOrderItems(1);
 
-print_r($orders);
+print_r($orderItems);

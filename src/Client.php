@@ -2,7 +2,12 @@
 
 namespace AllDigitalRewards\ChannelAdvisor;
 
-use AllDigitalRewards\ChannelAdvisor\Response\AccessToken;
+use AllDigitalRewards\ChannelAdvisor\Collection\ImageCollection;
+use AllDigitalRewards\ChannelAdvisor\Collection\OrderCollection;
+use AllDigitalRewards\ChannelAdvisor\Collection\ProductCollection;
+use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
+use AllDigitalRewards\ChannelAdvisor\Entities\OrderCreated;
+use AllDigitalRewards\ChannelAdvisor\Entities\Product;
 
 class Client
 {
@@ -39,11 +44,131 @@ class Client
         $this->refreshToken = $refresh_token;
         $this->applicationId = $application_id;
         $this->sharedSecret = $shared_secret;
-        $this->accessTokenHeader = $this->getAccessTokenAuthorizationHeader();
     }
 
-    public function sendRequest($type, $url, $body = null): object
+    public function getProductsUpdatedAfter(\DateTime $dateTime)
     {
+        // This expects we operate on UTC (which we do)
+        $timestamp = subStr(
+                $dateTime->format("c"),
+                0,
+                19
+            ) . "Z";
+
+        $nextLink = Client::API_URL .
+            '/v1/Products?$filter=' .
+            'UpdateDateUtc ge ' . $timestamp;
+
+        echo $nextLink . "\n";
+
+        return $this->getProducts($nextLink);
+    }
+
+    public function getProducts(string $nextLink = null)
+    {
+        if (is_null($nextLink)) {
+            $nextLink = '/v1/Products';
+        }
+
+        $response = $this->sendRequest('GET', $nextLink);
+
+        if (empty($response->value)) {
+            // Throw an exception.
+            // @todo Deal with this in the Client...
+        }
+
+        return new ProductCollection($response);
+    }
+
+    public function getProduct(string $product_id)
+    {
+        $response = $this->sendRequest('GET', Client::API_URL . '/v1/Products(' . $product_id . ')');
+
+        return new Product($response);
+    }
+
+    public function getProductImages(string $product_id)
+    {
+        $response = $this->sendRequest(
+            'GET',
+            '/v1/Products(' . $product_id . ')/Images'
+        );
+
+        return new ImageCollection($response);
+    }
+
+    /**
+     * Query against all orders across accounts
+     * @param string|null $nextLink
+     * @return object
+     */
+    public function getOrders(string $nextLink = null)
+    {
+        $uri = '/v1/Orders';
+
+        if (is_null($nextLink) === false) {
+            $uri = $nextLink;
+        }
+
+        $response = $this->sendRequest(
+            'GET',
+            $uri
+        );
+
+        var_dump($response);die;
+        if (empty($response->value)) {
+            // Throw an exception.
+            // @todo Deal with this in the Client...
+        }
+
+        return new OrderCollection($response);
+    }
+
+    /**
+     * Retrieve a single order
+     * @param int $id
+     * @return object
+     */
+    public function getOrder(int $id)
+    {
+        $response = $this->sendRequest(
+            'GET',
+            "/v1/Orders($id)"
+        );
+
+        return $response;
+    }
+
+    /**
+     * Retrieve all items for a single order
+     * @param int $id
+     * @return object
+     */
+    public function getOrderItems(int $id)
+    {
+        $response = $this->sendRequest(
+            'GET',
+            "/v1/Orders($id)/Items"
+        );
+
+        return $response;
+    }
+
+    public function createOrder($order)
+    {
+        $response = $this->sendRequest(
+            'POST',
+            '/v1/Orders',
+            $order
+        );
+
+        return new OrderCreated($response);
+    }
+
+    private function sendRequest($type, $url, $body = null): object
+    {
+        $this->accessTokenHeader = $this->getAccessTokenAuthorizationHeader();
+
         $response = $this->getHttpClient()->request(
             $type,
             $url,

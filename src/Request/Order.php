@@ -7,25 +7,13 @@ use AllDigitalRewards\ChannelAdvisor\AbstractService;
 
 class Order extends AbstractService
 {
-    public function create(array $order)
+    public function create($order)
     {
-        $body = [
-            'ProfileID' => $order['ProfileID'],
-            'BuyerEmailAddress' => $order['BuyerEmailAddress'],
-            'TotalPrice' => $order['TotalPrice'],
-            'Items' => [
-                [
-                    'Sku' => $order['Items']['Sku'],
-                    'Quantity' => $order['Items']['Quantity'],
-                ]
-            ]
-        ];
 
 
-        $response = $this->client->sendRequest(
-            'POST',
+        $response = $this->client->createOrder(
             '/v1/Orders',
-            $body
+            $order
         );
 
         return new OrderCreated($response);

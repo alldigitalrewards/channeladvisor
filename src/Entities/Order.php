@@ -1,8 +1,6 @@
 <?php
 
-namespace AllDigitalRewards\ChannelAdvisor\Response;
-
-use AllDigitalRewards\ChannelAdvisor\AbstractEntity;
+namespace AllDigitalRewards\ChannelAdvisor\Entities;
 
 class Order extends AbstractEntity
 {

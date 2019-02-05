@@ -73,11 +73,6 @@ $sampleOrder = [
   ]
 ];
 
-$order = new \AllDigitalRewards\ChannelAdvisor\Request\Order($client);
+$response = $client->createOrder($sampleOrder);
 
-try {
-   $response = $order->create($sampleOrder);
-   print_r($response);
-} catch (\AllDigitalRewards\ChannelAdvisor\ClientException $exception) {
-    print_r($exception->getMessage());
-}
+print_r($response);

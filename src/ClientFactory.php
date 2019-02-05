@@ -21,7 +21,7 @@ class ClientFactory
             throw new \Exception('Environment Variable CHANNELADVISOR_SHARED_SECRET is not set.');
         }
 
-        return new \AllDigitalRewards\ChannelAdvisor\Client(
+        return new Client(
             $refresh_token,
             $application_id,
             $shared_secret

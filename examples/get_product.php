@@ -7,6 +7,6 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "2CKkHOXvzUKuDmN0080kyg"
 );
 
-$productFetcher = new \AllDigitalRewards\ChannelAdvisor\ProductFetcher($client);
+$product = $client->getProduct('6200139');
 
-print_r($productFetcher->getProduct('6200139'));
+print_r($product);

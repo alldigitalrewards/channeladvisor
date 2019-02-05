@@ -4,9 +4,8 @@ namespace AllDigitalRewards\CashStar;
 
 use AllDigitalRewards\ChannelAdvisor\Client;
 use AllDigitalRewards\ChannelAdvisor\Collection\ImageCollection;
-use AllDigitalRewards\ChannelAdvisor\ImageFetcher;
-use AllDigitalRewards\ChannelAdvisor\Response\AccessToken;
-use AllDigitalRewards\ChannelAdvisor\Response\Image;
+use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
+use AllDigitalRewards\ChannelAdvisor\Entities\Image;
 use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -17,24 +16,21 @@ class ImageFetcherTest extends TestCase
 {
     public function testImageFetcherReturnsImageCollection()
     {
-        $imageFetcher = $this->getImageFetcher();
-
-        $imageCollection = $imageFetcher->getProductImages('PRODUCT-ID');
+        $imageCollection = $this->getClient()->getProductImages('PRODUCT-ID');
 
         $this->assertInstanceOf(ImageCollection::class, $imageCollection);
     }
 
     public function testImageDataMapsCorrectly()
     {
-        $imageFetcher = $this->getImageFetcher();
-
-        $imageCollection = $imageFetcher->getProductImages('PRODUCT-ID');
+        $imageCollection = $this->getClient()->getProductImages('PRODUCT-ID');
         $imageDataFromJson = json_decode(
             file_get_contents(__DIR__ . '/fixtures/image_response.json')
         )->value[0];
 
+
         /**
-         * @var Image $image
+         * @var Image
          */
         $image = $imageCollection[0];
 
@@ -45,7 +41,7 @@ class ImageFetcherTest extends TestCase
         $this->assertSame($imageDataFromJson->Url, $image->getUrl());
     }
 
-    private function getImageFetcher()
+    private function getClient()
     {
         $mockHandler = new MockHandler([
             new Response(
@@ -79,7 +75,7 @@ class ImageFetcherTest extends TestCase
 
         $client->setAccessToken($accessToken);
 
-        return new ImageFetcher($client);
+        return $client;
     }
 }
 
