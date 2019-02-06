@@ -36,6 +36,12 @@ class Client
 
     private $accessTokenHeader;
 
+    /**
+     * Client constructor.
+     * @param string $refresh_token
+     * @param string $application_id
+     * @param string $shared_secret
+     */
     public function __construct(
         string $refresh_token,
         string $application_id,
@@ -46,7 +52,11 @@ class Client
         $this->sharedSecret = $shared_secret;
     }
 
-    public function getProductsUpdatedAfter(\DateTime $dateTime)
+    /**
+     * @param \DateTime $dateTime
+     * @return ProductCollection
+     */
+    public function getProductsUpdatedAfter(\DateTime $dateTime): ProductCollection
     {
         // This expects we operate on UTC (which we do)
         $timestamp = subStr(
@@ -64,7 +74,11 @@ class Client
         return $this->getProducts($nextLink);
     }
 
-    public function getProducts(string $nextLink = null)
+    /**
+     * @param string|null $nextLink
+     * @return ProductCollection
+     */
+    public function getProducts(string $nextLink = null): ProductCollection
     {
         if (is_null($nextLink)) {
             $nextLink = '/v1/Products';
@@ -80,14 +94,22 @@ class Client
         return new ProductCollection($response);
     }
 
-    public function getProduct(string $product_id)
+    /**
+     * @param string $product_id
+     * @return Product
+     */
+    public function getProduct(string $product_id): Product
     {
         $response = $this->sendRequest('GET', Client::API_URL . '/v1/Products(' . $product_id . ')');
 
         return new Product($response);
     }
 
-    public function getProductImages(string $product_id)
+    /**
+     * @param string $product_id
+     * @return ImageCollection
+     */
+    public function getProductImages(string $product_id): ImageCollection
     {
         $response = $this->sendRequest(
             'GET',
@@ -100,9 +122,9 @@ class Client
     /**
      * Query against all orders across accounts
      * @param string|null $nextLink
-     * @return object
+     * @return OrderCollection
      */
-    public function getOrders(string $nextLink = null)
+    public function getOrders(string $nextLink = null): OrderCollection
     {
         $uri = '/v1/Orders';
 
@@ -115,7 +137,6 @@ class Client
             $uri
         );
 
-        var_dump($response);die;
         if (empty($response->value)) {
             // Throw an exception.
             // @todo Deal with this in the Client...
