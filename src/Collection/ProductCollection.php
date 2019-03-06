@@ -2,7 +2,7 @@
 
 namespace AllDigitalRewards\ChannelAdvisor\Collection;
 
-use AllDigitalRewards\ChannelAdvisor\Response\Product;
+use AllDigitalRewards\ChannelAdvisor\Entities\Product;
 
 class ProductCollection extends AbstractCollection
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace AllDigitalRewards\ChannelAdvisor;
+namespace AllDigitalRewards\ChannelAdvisor\Entities;
 
 abstract class AbstractEntity
 {
