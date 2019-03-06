@@ -9,4 +9,4 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
 
 $order = $client->getOrder(1);
 
-print_r($order);
+var_dump($order);

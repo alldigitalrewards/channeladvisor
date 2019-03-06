@@ -148,7 +148,7 @@ class Client
     /**
      * Retrieve a single order
      * @param int $id
-     * @return object
+     * @return object|null
      */
     public function getOrder(int $id)
     {
@@ -186,7 +186,14 @@ class Client
         return new OrderCreated($response);
     }
 
-    private function sendRequest($type, $url, $body = null): object
+    /**
+     * @param $type
+     * @param $url
+     * @param null $body
+     * @return null|object
+     * @throws ClientException
+     */
+    private function sendRequest($type, $url, $body = null): ?object
     {
         $this->accessTokenHeader = $this->getAccessTokenAuthorizationHeader();
 
