@@ -708,7 +708,11 @@ class Product extends AbstractEntity
      */
     public function getDescription()
     {
-        return $this->Description;
+        if (is_null($this->Description) === false) {
+            return str_replace("'","&#39;", $this->Description);
+        }
+
+        return null;
     }
 
     /**
@@ -900,7 +904,11 @@ class Product extends AbstractEntity
      */
     public function getTitle(): string
     {
-        return $this->Title;
+        if (is_null($this->Title) === false) {
+            return str_replace("'","&#39;", $this->Title);
+        }
+
+        return null;
     }
 
     /**
