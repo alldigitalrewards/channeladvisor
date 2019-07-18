@@ -2,12 +2,15 @@
 
 namespace AllDigitalRewards\ChannelAdvisor;
 
+use AllDigitalRewards\ChannelAdvisor\Collection\FulfillmentCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\ImageCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\OrderCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\ProductCollection;
 use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
-use AllDigitalRewards\ChannelAdvisor\Entities\OrderCreated;
+use AllDigitalRewards\ChannelAdvisor\Entities\Fulfillment;
+use AllDigitalRewards\ChannelAdvisor\Entities\Order;
 use AllDigitalRewards\ChannelAdvisor\Entities\Product;
+use GuzzleHttp\Exception\RequestException;
 
 class Client
 {
@@ -33,8 +36,10 @@ class Client
      * @var \GuzzleHttp\Client
      */
     private $httpClient;
-
-    private $accessTokenHeader;
+    /**
+     * @var array
+     */
+    private $errors = [];
 
     /**
      * Client constructor.
@@ -46,10 +51,13 @@ class Client
         string $refresh_token,
         string $application_id,
         string $shared_secret
-    ) {
+    )
+    {
         $this->refreshToken = $refresh_token;
         $this->applicationId = $application_id;
         $this->sharedSecret = $shared_secret;
+
+        $this->setAccessToken();
     }
 
     /**
@@ -97,6 +105,8 @@ class Client
     /**
      * @param string $product_id
      * @return Product
+     * @throws ClientException
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getProduct(string $product_id): Product
     {
@@ -120,9 +130,9 @@ class Client
     }
 
     /**
-     * Query against all orders across accounts
      * @param string|null $nextLink
      * @return OrderCollection
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getOrders(string $nextLink = null): OrderCollection
     {
@@ -137,18 +147,13 @@ class Client
             $uri
         );
 
-        if (empty($response->value)) {
-            // Throw an exception.
-            // @todo Deal with this in the Client...
-        }
-
         return new OrderCollection($response);
     }
 
     /**
-     * Retrieve a single order
      * @param int $id
-     * @return object|null
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getOrder(int $id)
     {
@@ -175,51 +180,89 @@ class Client
         return $response;
     }
 
+    /**
+     * @return FulfillmentCollection|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getFulfillments()
+    {
+        $response = $this->sendRequest(
+            'GET',
+            "/v1/Fulfillments?access_token=" . $this->getAccessToken()->getAccessToken()
+        );
+        if ($response->value) {
+            return new FulfillmentCollection($response);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param int $orderId
+     * @return FulfillmentCollection|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getFulfillment(int $orderId)
+    {
+        $response = $this->sendRequest(
+            'GET',
+            "/v1/Fulfillments?access_token="
+            . $this->getAccessToken()->getAccessToken()
+            . '&$filter=OrderID'
+            . '%20eq%20'
+            . $orderId
+            . '&$expand=Items'
+        );
+        if ($response->value) {
+            return new FulfillmentCollection($response);
+        }
+
+        return null;
+    }
+
     public function createOrder($order)
     {
         $response = $this->sendRequest(
             'POST',
-            '/v1/Orders',
+            '/v1/Orders?access_token=' . $this->getAccessToken()->getAccessToken(),
             $order
         );
 
-        return new OrderCreated($response);
+        return new Order($response);
     }
 
     /**
      * @param $type
      * @param $url
      * @param null $body
-     * @return null|object
-     * @throws ClientException
+     * @return mixed
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    private function sendRequest($type, $url, $body = null): ?object
+    private function sendRequest($type, $url, $body = null)
     {
-        $this->accessTokenHeader = $this->getAccessTokenAuthorizationHeader();
+        try {
+            $response = $this->getHttpClient()->request(
+                $type,
+                $url,
+                [
+                    'headers' => [
+                        'Authorization' => $this->getAccessTokenAuthorizationHeader(),
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'application/json'
+                    ],
+                    'body' => json_encode($body)
+                ]
+            );
 
-        $response = $this->getHttpClient()->request(
-            $type,
-            $url,
-            [
-                'headers' => [
-                    'Authorization' => $this->accessTokenHeader,
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/json'
-                ],
-                'form_params' => $body
-            ]
-        );
-
-        $jsonObj = json_decode($response->getBody());
-
-        if (!in_array($response->getStatusCode(), [200, 201])) {
-            $error = empty($jsonObj->Message) === false ? $jsonObj->Message : $jsonObj->error->message;
-            if (!empty($error)) {
-                throw new ClientException($error);
+            $jsonObj = json_decode($response->getBody());
+            if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 299) {
+                return $jsonObj;
             }
+            $this->buildErrorsArray($jsonObj);
+        } catch (\Exception $e) {
+            $this->errors[] = $e->getMessage();
         }
-
-        return $jsonObj;
+        return null;
     }
 
     public function setHttpClient(\GuzzleHttp\Client $httpClient)
@@ -239,50 +282,83 @@ class Client
         return $this->httpClient;
     }
 
-    protected function getAccessTokenAuthorizationHeader(): string
+    protected function setAccessToken()
     {
-        if (is_null($this->accessToken)) {
-            $this->updateAccessToken();
+        if ($this->accessToken === null || $this->accessToken->isExpired()) {
+            $this->accessToken = $this->requestAccessToken();
         }
-
-        if ($this->accessToken->isExpired()) {
-            $this->updateAccessToken();
-        }
-
-        return $this->accessToken->getTokenType() . ' ' . $this->accessToken->getAccessToken();
-    }
-
-    private function updateAccessToken(): void
-    {
-        $client_id = base64_encode("$this->applicationId:$this->sharedSecret");
-
-        $response = $this->getHttpClient()->request(
-            'POST',
-            self::API_URL . '/oauth2/token',
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'text/plain',
-                    'Authorization' => 'Basic ' . $client_id,
-                    'Cache-Control' => 'no-cache'
-                ],
-                'form_params' => [
-                    'grant_type' => 'refresh_token',
-                    'refresh_token' => $this->refreshToken
-                ]
-            ]
-        );
-
-        $response = json_decode($response->getBody());
-
-        $this->accessToken = new AccessToken($response);
     }
 
     /**
-     * @param AccessToken $accessToken
+     * @return AccessToken
      */
-    public function setAccessToken(AccessToken $accessToken)
+    protected function getAccessToken()
     {
-        $this->accessToken = $accessToken;
+        $this->setAccessToken();
+        return $this->accessToken;
+    }
+
+    /**
+     * @return string
+     */
+    protected function getAccessTokenAuthorizationHeader(): string
+    {
+        return $this->getAccessToken()->getTokenType() . ' ' . $this->getAccessToken()->getAccessToken();
+    }
+
+    /**
+     * @return AccessToken|null
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    private function requestAccessToken(): ?AccessToken
+    {
+        $client_id = base64_encode("$this->applicationId:$this->sharedSecret");
+
+        try {
+            $response = $this->getHttpClient()->request(
+                'POST',
+                self::API_URL . '/oauth2/token',
+                [
+                    'headers' => [
+                        'Accept' => 'application/json',
+                        'Content-Type' => 'text/plain',
+                        'Authorization' => 'Basic ' . $client_id,
+                        'Cache-Control' => 'no-cache'
+                    ],
+                    'form_params' => [
+                        'grant_type' => 'refresh_token',
+                        'refresh_token' => $this->refreshToken
+                    ]
+                ]
+            );
+
+            $token = json_decode($response->getBody());
+            return new AccessToken($token);
+        } catch (\Exception $exception) {
+            $this->errors[] = $exception->getMessage();
+        }
+        return null;
+    }
+
+    public function getErrors(): array
+    {
+        return $this->errors;
+    }
+
+    protected function buildErrorsArray($arr)
+    {
+        $array = json_decode(json_encode($arr), true);
+
+        if (!is_array($array)) {
+            //sometimes comes back NULL
+            $this->errors[] = $array ?? 'No error message available.';
+            return;
+        }
+        foreach ($array as $k => $v) {
+            if ($k === 'Message' || $v['message']) {
+                $this->errors[] = $k === 'Message' ? $v : $v['message'];
+                continue;
+            }
+        }
     }
 }

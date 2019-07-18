@@ -7,6 +7,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "2CKkHOXvzUKuDmN0080kyg"
 );
 
-$product = $client->getProduct('6200207');
+$fulfillments = $client->getFulfillments();
 
-print_r($product);
+print_r($fulfillments);
+print_r($client->getErrors());
