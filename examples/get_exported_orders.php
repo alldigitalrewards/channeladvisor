@@ -7,7 +7,12 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "2CKkHOXvzUKuDmN0080kyg"
 );
 
-$orderItems = $client->getOrderItems(12236104);
+$list = $client->getExportedOrders(true);
 
-print_r($orderItems);
+var_dump($list);
 print_r($client->getErrors());
+
+$list = $client->getExportedOrders();
+var_dump($list);
+print_r($client->getErrors());
+

@@ -7,7 +7,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "2CKkHOXvzUKuDmN0080kyg"
 );
 
-$orderItems = $client->getOrderItems(12236104);
+$cancelled = $client->cancelOrder(12242713);
 
-print_r($orderItems);
+var_dump($cancelled);
 print_r($client->getErrors());
