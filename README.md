@@ -64,6 +64,35 @@ while(true) {
 
 ```
 
+### Create Order
+```bash
+$sampleOrderConfig = [
+    "ProfileID" => 12003121, //Identifies the ChannelAdvisor profile
+    "SiteOrderID" => "12003121-12341234", // This should be the Transaction GUID
+    "TotalPrice" => 38.41,
+    "BuyerEmailAddress" => "jmuto@alldigitalrewards.com",
+    "ShippingTitle" => "Mr.",
+    "ShippingFirstName" => "Joseph",
+    "ShippingLastName" => "Muto",
+    "ShippingSuffix" => null,
+    "ShippingCompanyName" => null,
+    "ShippingCompanyJobTitle" => null,
+    "ShippingDaytimePhone" => "123456789",
+    "ShippingEveningPhone" => null,
+    "ShippingAddressLine1" => "935 Bungalow Ave",
+    "ShippingAddressLine2" => "",
+    "ShippingCity" => "Winter Park",
+    "ShippingStateOrProvince" => "FL",
+    "ShippingPostalCode" => "32789",
+    "Items" => [
+        [
+            "Sku" => "72539",
+            "Quantity" => 1,
+            "UnitPrice" => 38.41,
+        ]
+    ]
+]
+```
 ## Testing
 
 ``` bash
@@ -80,4 +109,3 @@ If necessary `composer fix-style` can be used to automatically clean up issues.
  * [ChannelAdvisor Developer Network](https://developer.channeladvisor.com)
  
 
- 

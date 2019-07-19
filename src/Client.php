@@ -311,6 +311,25 @@ class Client
      */
     public function createOrder($order)
     {
+        $order['TotalTaxPrice'] = 0.00;
+        $order['TotalShippingPrice'] = 0.00;
+        $order['TotalShippingTaxPrice'] = 0.00;
+        $order['ShippingCountry'] = "US";
+        $order['BillingTitle'] = "";
+        $order['BillingFirstName'] = "All Digital Rewards";
+        $order['BillingLastName'] = "All Digital Rewards";
+        $order['BillingSuffix'] = "";
+        $order['BillingCompanyName'] = "";
+        $order['BillingCompanyJobTitle'] = null;
+        $order['BillingDaytimePhone'] = "8664157703";
+        $order['BillingEveningPhone'] = null;
+        $order['BillingAddressLine1'] = "349 Lake Havasu Ave South";
+        $order['BillingAddressLine2'] = "Suite 104";
+        $order['BillingCity'] = "Lake Havasu City";
+        $order['BillingStateOrProvince'] = "AZ";
+        $order['BillingPostalCode'] = "86403";
+        $order['BillingCountry'] = "US";
+
         $response = $this->sendRequest(
             'POST',
             '/v1/Orders?access_token=' . $this->getAccessToken()->getAccessToken(),

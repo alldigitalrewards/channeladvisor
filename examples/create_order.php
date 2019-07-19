@@ -8,12 +8,9 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
 );
 
 $sampleOrder = [
-    "ProfileID" => 12003121,
-    "SiteOrderID" => "12003121-12341234",
+    "ProfileID" => 12003121, //Identifies the ChannelAdvisor profile
+    "SiteOrderID" => "12003121-1234123456", // This should be the Transaction GUID
     "TotalPrice" => 38.41,
-    "TotalTaxPrice" => 0.00,
-    "TotalShippingPrice" => 0.00,
-    "TotalShippingTaxPrice" => 0.00,
     "BuyerEmailAddress" => "jmuto@alldigitalrewards.com",
     "ShippingTitle" => "Mr.",
     "ShippingFirstName" => "Joseph",
@@ -28,21 +25,6 @@ $sampleOrder = [
     "ShippingCity" => "Winter Park",
     "ShippingStateOrProvince" => "FL",
     "ShippingPostalCode" => "32789",
-    "ShippingCountry" => "US",
-    "BillingTitle" => "Mr.",
-    "BillingFirstName" => "Joseph",
-    "BillingLastName" => "Muto",
-    "BillingSuffix" => "",
-    "BillingCompanyName" => "",
-    "BillingCompanyJobTitle" => null,
-    "BillingDaytimePhone" => "8664157703",
-    "BillingEveningPhone" => null,
-    "BillingAddressLine1" => "349 Lake Havasu Ave South",
-    "BillingAddressLine2" => "Suite 104",
-    "BillingCity" => "Lake Havasu City",
-    "BillingStateOrProvince" => "AZ",
-    "BillingPostalCode" => "86403",
-    "BillingCountry" => "US",
     "Items" => [
         [
             "Sku" => "72539",
