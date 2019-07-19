@@ -40,6 +40,8 @@ class Client
      */
     private $errors = [];
 
+    private $statusCode;
+
     /**
      * Client constructor.
      * @param string $refresh_token
@@ -185,6 +187,50 @@ class Client
     }
 
     /**
+     * When to Use:
+     * To mark an order as exported because it has already
+     * been imported, and avoid receiving it in future GET Order requests
+     * (assuming the right parameters are in the request).
+     * This request needs to be executed one order at a time and cannot be sent in a batch request.
+     * Will return null and empty errors (status 204)
+     *
+     * @param int $id
+     * @return bool
+     */
+    public function exportOrder(int $id)
+    {
+        $this->sendRequest(
+            'POST',
+            "/v1/Orders($id)/Export"
+        );
+
+        return $this->statusCode === 204;
+    }
+
+    /**
+     * When to use:
+     * Fetch Orders by exported or not
+     *
+     * @param bool $exported
+     * @return OrderCollection|null
+     */
+    public function getExportedOrders(bool $exported = false)
+    {
+        $exported = $exported === true ? 'true' : 'false';
+
+        $response = $this->sendRequest(
+            'GET',
+            "/v1/Orders?exported=$exported"
+        );
+
+        if ($response !== null && empty($response->value) === false) {
+            return new OrderCollection($response);
+        }
+
+        return null;
+    }
+
+    /**
      * @param int $id
      * @return OrderItemCollection
      * @throws \Exception
@@ -286,6 +332,8 @@ class Client
             );
 
             $jsonObj = json_decode($response->getBody());
+            $this->statusCode = $response->getStatusCode();
+
             if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 299) {
                 return $jsonObj;
             }
