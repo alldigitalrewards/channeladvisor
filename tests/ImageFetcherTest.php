@@ -78,4 +78,3 @@ class ImageFetcherTest extends TestCase
         return $client;
     }
 }
-

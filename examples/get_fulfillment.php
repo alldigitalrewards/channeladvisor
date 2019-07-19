@@ -9,5 +9,5 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
 
 $fulfillment = $client->getFulfillment(12236137);
 
-print_r($fulfillment);
+var_dump($fulfillment);
 print_r($client->getErrors());

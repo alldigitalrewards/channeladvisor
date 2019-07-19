@@ -10,3 +10,4 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
 $orderItems = $client->getOrderItems(12236104);
 
 print_r($orderItems);
+print_r($client->getErrors());

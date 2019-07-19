@@ -10,3 +10,4 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
 $product = $client->getProduct('6200207');
 
 print_r($product);
+print_r($client->getErrors());

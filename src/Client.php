@@ -5,12 +5,11 @@ namespace AllDigitalRewards\ChannelAdvisor;
 use AllDigitalRewards\ChannelAdvisor\Collection\FulfillmentCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\ImageCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\OrderCollection;
+use AllDigitalRewards\ChannelAdvisor\Collection\OrderItemCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\ProductCollection;
 use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
-use AllDigitalRewards\ChannelAdvisor\Entities\Fulfillment;
 use AllDigitalRewards\ChannelAdvisor\Entities\Order;
 use AllDigitalRewards\ChannelAdvisor\Entities\Product;
-use GuzzleHttp\Exception\RequestException;
 
 class Client
 {
@@ -51,27 +50,25 @@ class Client
         string $refresh_token,
         string $application_id,
         string $shared_secret
-    )
-    {
+    ) {
         $this->refreshToken = $refresh_token;
         $this->applicationId = $application_id;
         $this->sharedSecret = $shared_secret;
-
-        $this->setAccessToken();
     }
 
     /**
      * @param \DateTime $dateTime
      * @return ProductCollection
+     * @throws ApiException
      */
     public function getProductsUpdatedAfter(\DateTime $dateTime): ProductCollection
     {
         // This expects we operate on UTC (which we do)
         $timestamp = subStr(
-                $dateTime->format("c"),
-                0,
-                19
-            ) . "Z";
+            $dateTime->format("c"),
+            0,
+            19
+        ) . "Z";
 
         $nextLink = Client::API_URL .
             '/v1/Products?$filter=' .
@@ -85,6 +82,7 @@ class Client
     /**
      * @param string|null $nextLink
      * @return ProductCollection
+     * @throws ApiException
      */
     public function getProducts(string $nextLink = null): ProductCollection
     {
@@ -94,9 +92,9 @@ class Client
 
         $response = $this->sendRequest('GET', $nextLink);
 
-        if (empty($response->value)) {
-            // Throw an exception.
-            // @todo Deal with this in the Client...
+        if ($response === null || empty($response->value) === true) {
+            $this->setErrors('Api Exception');
+            throw new ApiException(implode(', ', $this->getErrors()));
         }
 
         return new ProductCollection($response);
@@ -105,19 +103,25 @@ class Client
     /**
      * @param string $product_id
      * @return Product
-     * @throws ClientException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiException
      */
     public function getProduct(string $product_id): Product
     {
         $response = $this->sendRequest('GET', Client::API_URL . '/v1/Products(' . $product_id . ')');
 
-        return new Product($response);
+        if ($response !== null) {
+            return new Product($response);
+        }
+
+        $this->setErrors('Invalid Sku: ' . $product_id);
+
+        throw new ApiException(implode(', ', $this->getErrors()));
     }
 
     /**
      * @param string $product_id
      * @return ImageCollection
+     * @throws ApiException
      */
     public function getProductImages(string $product_id): ImageCollection
     {
@@ -126,13 +130,20 @@ class Client
             '/v1/Products(' . $product_id . ')/Images'
         );
 
-        return new ImageCollection($response);
+        if ($response !== null && empty($response->value) === false) {
+            return new ImageCollection($response);
+        }
+
+
+        $this->setErrors('Invalid Order Id: ' . $product_id);
+
+        throw new ApiException(implode(', ', $this->getErrors()));
     }
 
     /**
      * @param string|null $nextLink
      * @return OrderCollection
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ApiException
      */
     public function getOrders(string $nextLink = null): OrderCollection
     {
@@ -147,13 +158,17 @@ class Client
             $uri
         );
 
+        if ($response === null || empty($response->value) === true) {
+            $this->setErrors('Api Exception');
+            throw new ApiException(implode(', ', $this->getErrors()));
+        }
+
         return new OrderCollection($response);
     }
 
     /**
      * @param int $id
-     * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return Order|null
      */
     public function getOrder(int $id)
     {
@@ -162,13 +177,17 @@ class Client
             "/v1/Orders($id)"
         );
 
-        return $response;
+        if ($response !== null) {
+            return new Order($response);
+        }
+
+        return null;
     }
 
     /**
-     * Retrieve all items for a single order
      * @param int $id
-     * @return object
+     * @return OrderItemCollection
+     * @throws \Exception
      */
     public function getOrderItems(int $id)
     {
@@ -177,12 +196,17 @@ class Client
             "/v1/Orders($id)/Items"
         );
 
-        return $response;
+        if ($response !== null && empty($response->value) === false) {
+            return new OrderItemCollection($response);
+        }
+
+        $this->setErrors('Invalid Order Id: ' . $id);
+
+        throw new ApiException(implode(', ', $this->getErrors()));
     }
 
     /**
      * @return FulfillmentCollection|null
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getFulfillments()
     {
@@ -190,7 +214,7 @@ class Client
             'GET',
             "/v1/Fulfillments?access_token=" . $this->getAccessToken()->getAccessToken()
         );
-        if ($response->value) {
+        if ($response !== null && empty($response->value) === false) {
             return new FulfillmentCollection($response);
         }
 
@@ -200,7 +224,6 @@ class Client
     /**
      * @param int $orderId
      * @return FulfillmentCollection|null
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getFulfillment(int $orderId)
     {
@@ -213,13 +236,19 @@ class Client
             . $orderId
             . '&$expand=Items'
         );
-        if ($response->value) {
+
+        if ($response !== null && empty($response->value) === false) {
             return new FulfillmentCollection($response);
         }
 
         return null;
     }
 
+    /**
+     * @param $order
+     * @return Order
+     * @throws ApiException
+     */
     public function createOrder($order)
     {
         $response = $this->sendRequest(
@@ -227,16 +256,18 @@ class Client
             '/v1/Orders?access_token=' . $this->getAccessToken()->getAccessToken(),
             $order
         );
+        if ($response !== null) {
+            return new Order($response);
+        }
 
-        return new Order($response);
+        throw new ApiException(implode(', ', $this->getErrors()));
     }
 
     /**
      * @param $type
      * @param $url
      * @param null $body
-     * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @return mixed|null
      */
     private function sendRequest($type, $url, $body = null)
     {
@@ -282,19 +313,23 @@ class Client
         return $this->httpClient;
     }
 
-    protected function setAccessToken()
+    /**
+     * @param AccessToken $token
+     */
+    public function setAccessToken(AccessToken $token)
     {
-        if ($this->accessToken === null || $this->accessToken->isExpired()) {
-            $this->accessToken = $this->requestAccessToken();
-        }
+        $this->accessToken = $token;
     }
 
     /**
      * @return AccessToken
      */
-    protected function getAccessToken()
+    public function getAccessToken()
     {
-        $this->setAccessToken();
+        if ($this->accessToken === null || $this->accessToken->isExpired()) {
+            $this->accessToken = $this->requestAccessToken();
+        }
+
         return $this->accessToken;
     }
 
@@ -308,7 +343,6 @@ class Client
 
     /**
      * @return AccessToken|null
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function requestAccessToken(): ?AccessToken
     {
@@ -343,6 +377,16 @@ class Client
     public function getErrors(): array
     {
         return $this->errors;
+    }
+
+    /**
+     * @param string $msg
+     */
+    public function setErrors(string $msg)
+    {
+        $this->errors = empty($this->getErrors()) === true
+            ? [$msg]
+            : $this->getErrors();
     }
 
     protected function buildErrorsArray($arr)
