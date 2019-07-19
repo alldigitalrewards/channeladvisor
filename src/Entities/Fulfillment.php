@@ -4,25 +4,81 @@ namespace AllDigitalRewards\ChannelAdvisor\Entities;
 
 class Fulfillment extends AbstractEntity
 {
+    /**
+     * @var int
+     */
     private $ID;
+    /**
+     * @var int
+     */
     private $ProfileID;
+    /**
+     * @var int
+     */
     private $OrderID;
+    /**
+     * @var mixed
+     */
     private $CreatedDateUtc;
+    /**
+     * @var mixed
+     */
     private $UpdatedDateUtc;
+    /**
+     * @var mixed
+     */
     private $Type;
+    /**
+     * @var mixed
+     */
     private $DeliveryStatus;
+    /**
+     * @var string|null
+     */
     private $TrackingNumber;
+    /**
+     * @var string|null
+     */
     private $ShippingCarrier;
+    /**
+     * @var string|null
+     */
     private $ShippingClass;
+    /**
+     * @var int
+     */
     private $DistributionCenterID;
+    /**
+     * @var string|null
+     */
     private $ExternalFulfillmentCenterCode;
+    /**
+     * @var float|null
+     */
     private $ShippingCost;
+    /**
+     * @var float|null
+     */
     private $InsuranceCost;
+    /**
+     * @var float|null
+     */
     private $TaxCost;
+    /**
+     * @var mixed
+     */
     private $ShippedDateUtc;
+    /**
+     * @var string|null
+     */
     private $SellerFulfillmentID;
+    /**
+     * @var boolean
+     */
     private $HasShippingLabel;
-    private $LabelFormat;
+    /**
+     * @var mixed
+     */
     private $Items;
 
     /**
@@ -42,33 +98,33 @@ class Fulfillment extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getProfileID()
+    public function getProfileID(): int
     {
         return $this->ProfileID;
     }
 
     /**
-     * @param mixed $ProfileID
+     * @param int $ProfileID
      */
-    public function setProfileID($ProfileID)
+    public function setProfileID(int $ProfileID)
     {
         $this->ProfileID = $ProfileID;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getOrderID()
+    public function getOrderID(): int
     {
         return $this->OrderID;
     }
 
     /**
-     * @param mixed $OrderID
+     * @param int $OrderID
      */
-    public function setOrderID($OrderID)
+    public function setOrderID(int $OrderID)
     {
         $this->OrderID = $OrderID;
     }
@@ -138,129 +194,129 @@ class Fulfillment extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getTrackingNumber()
+    public function getTrackingNumber(): string
     {
         return $this->TrackingNumber;
     }
 
     /**
-     * @param mixed $TrackingNumber
+     * @param string|null $TrackingNumber
      */
-    public function setTrackingNumber($TrackingNumber)
+    public function setTrackingNumber(string $TrackingNumber)
     {
         $this->TrackingNumber = $TrackingNumber;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingCarrier()
+    public function getShippingCarrier(): string
     {
         return $this->ShippingCarrier;
     }
 
     /**
-     * @param mixed $ShippingCarrier
+     * @param string|null $ShippingCarrier
      */
-    public function setShippingCarrier($ShippingCarrier)
+    public function setShippingCarrier(string $ShippingCarrier)
     {
         $this->ShippingCarrier = $ShippingCarrier;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingClass()
+    public function getShippingClass(): string
     {
         return $this->ShippingClass;
     }
 
     /**
-     * @param mixed $ShippingClass
+     * @param string|null $ShippingClass
      */
-    public function setShippingClass($ShippingClass)
+    public function setShippingClass(string $ShippingClass)
     {
         $this->ShippingClass = $ShippingClass;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getDistributionCenterID()
+    public function getDistributionCenterID(): int
     {
         return $this->DistributionCenterID;
     }
 
     /**
-     * @param mixed $DistributionCenterID
+     * @param int $DistributionCenterID
      */
-    public function setDistributionCenterID($DistributionCenterID)
+    public function setDistributionCenterID(int $DistributionCenterID)
     {
         $this->DistributionCenterID = $DistributionCenterID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getExternalFulfillmentCenterCode()
+    public function getExternalFulfillmentCenterCode(): string
     {
         return $this->ExternalFulfillmentCenterCode;
     }
 
     /**
-     * @param mixed $ExternalFulfillmentCenterCode
+     * @param string|null $ExternalFulfillmentCenterCode
      */
-    public function setExternalFulfillmentCenterCode($ExternalFulfillmentCenterCode)
+    public function setExternalFulfillmentCenterCode(string $ExternalFulfillmentCenterCode)
     {
         $this->ExternalFulfillmentCenterCode = $ExternalFulfillmentCenterCode;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getShippingCost()
+    public function getShippingCost(): float
     {
         return $this->ShippingCost;
     }
 
     /**
-     * @param mixed $ShippingCost
+     * @param float|null $ShippingCost
      */
-    public function setShippingCost($ShippingCost)
+    public function setShippingCost(float $ShippingCost)
     {
         $this->ShippingCost = $ShippingCost;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getInsuranceCost()
+    public function getInsuranceCost(): float
     {
         return $this->InsuranceCost;
     }
 
     /**
-     * @param mixed $InsuranceCost
+     * @param float|null $InsuranceCost
      */
-    public function setInsuranceCost($InsuranceCost)
+    public function setInsuranceCost(float $InsuranceCost)
     {
         $this->InsuranceCost = $InsuranceCost;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTaxCost()
+    public function getTaxCost(): float
     {
         return $this->TaxCost;
     }
 
     /**
-     * @param mixed $TaxCost
+     * @param float|null $TaxCost
      */
-    public function setTaxCost($TaxCost)
+    public function setTaxCost(float $TaxCost)
     {
         $this->TaxCost = $TaxCost;
     }
@@ -282,51 +338,35 @@ class Fulfillment extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSellerFulfillmentID()
+    public function getSellerFulfillmentID(): string
     {
         return $this->SellerFulfillmentID;
     }
 
     /**
-     * @param mixed $SellerFulfillmentID
+     * @param string|null $SellerFulfillmentID
      */
-    public function setSellerFulfillmentID($SellerFulfillmentID)
+    public function setSellerFulfillmentID(string $SellerFulfillmentID)
     {
         $this->SellerFulfillmentID = $SellerFulfillmentID;
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getHasShippingLabel()
+    public function isHasShippingLabel(): bool
     {
         return $this->HasShippingLabel;
     }
 
     /**
-     * @param mixed $HasShippingLabel
+     * @param bool $HasShippingLabel
      */
-    public function setHasShippingLabel($HasShippingLabel)
+    public function setHasShippingLabel(bool $HasShippingLabel)
     {
         $this->HasShippingLabel = $HasShippingLabel;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLabelFormat()
-    {
-        return $this->LabelFormat;
-    }
-
-    /**
-     * @param mixed $LabelFormat
-     */
-    public function setLabelFormat($LabelFormat)
-    {
-        $this->LabelFormat = $LabelFormat;
     }
 
     /**

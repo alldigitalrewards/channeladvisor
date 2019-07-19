@@ -17,15 +17,15 @@ class Order extends AbstractEntity
      */
     private $ProfileID;
     /**
-     * @var mixed
+     * @var int
      */
     private $SiteID;
     /**
-     * @var mixed
+     * @var string
      */
     private $SiteName;
     /**
-     * @var mixed
+     * @var string
      */
     private $SiteOrderID;
     /**
@@ -33,15 +33,15 @@ class Order extends AbstractEntity
      */
     private $SiteAccountID;
     /**
-     * @var mixed
+     * @var string
      */
     private $Currency;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $SecondarySiteOrderID;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $SellerOrderID;
     /**
@@ -57,55 +57,55 @@ class Order extends AbstractEntity
      */
     private $ImportDateUtc;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PublicNotes;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PrivateNotes;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BuyerUserId;
     /**
-     * @var mixed
+     * @var string
      */
     private $BuyerEmailAddress;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $SpecialInstructions;
     /**
-     * @var mixed
+     * @var float
      */
     private $TotalPrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $TotalTaxPrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $TotalShippingPrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $TotalShippingTaxPrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $TotalInsurancePrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $TotalGiftOptionPrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $TotalGiftOptionTaxPrice;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $AdditionalCostOrDiscount;
     /**
@@ -117,15 +117,15 @@ class Order extends AbstractEntity
      */
     private $DeliverByDateUtc;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $RequestedShippingCarrier;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $RequestedShippingClass;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ResellerID;
     /**
@@ -133,11 +133,11 @@ class Order extends AbstractEntity
      */
     private $FlagID;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $FlagDescription;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $OrderTags;
     /**
@@ -169,7 +169,7 @@ class Order extends AbstractEntity
      */
     private $ShippingDateUtc;
     /**
-     * @var mixed
+     * @var boolean
      */
     private $BuyerEmailOptIn;
     /**
@@ -185,151 +185,151 @@ class Order extends AbstractEntity
      */
     private $GiftOptionsTaxType;
     /**
-     * @var mixed
+     * @var string
      */
     private $PaymentMethod;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PaymentTransactionID;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PaymentPaypalAccountID;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PaymentCreditCardLast4;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PaymentMerchantReferenceNumber;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingTitle;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingFirstName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingLastName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingSuffix;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingCompanyName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingCompanyJobTitle;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingDaytimePhone;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingEveningPhone;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingAddressLine1;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingAddressLine2;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingCity;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingStateOrProvince;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingStateOrProvinceName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingPostalCode;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $ShippingCountry;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingTitle;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingFirstName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingLastName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingSuffix;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingCompanyName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingCompanyJobTitle;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingDaytimePhone;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingEveningPhone;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingAddressLine1;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingAddressLine2;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingCity;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingStateOrProvince;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingStateOrProvinceName;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingPostalCode;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $BillingCountry;
     /**
-     * @var mixed
+     * @var string|null
      */
     private $PromotionCode;
     /**
-     * @var mixed
+     * @var float|null
      */
     private $PromotionAmount;
 
@@ -366,49 +366,49 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getSiteID()
+    public function getSiteID(): int
     {
         return $this->SiteID;
     }
 
     /**
-     * @param mixed $SiteID
+     * @param int $SiteID
      */
-    public function setSiteID($SiteID)
+    public function setSiteID(int $SiteID)
     {
         $this->SiteID = $SiteID;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSiteName()
+    public function getSiteName(): string
     {
         return $this->SiteName;
     }
 
     /**
-     * @param mixed $SiteName
+     * @param string $SiteName
      */
-    public function setSiteName($SiteName)
+    public function setSiteName(string $SiteName)
     {
         $this->SiteName = $SiteName;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSiteOrderID()
+    public function getSiteOrderID(): string
     {
         return $this->SiteOrderID;
     }
 
     /**
-     * @param mixed $SiteOrderID
+     * @param string $SiteOrderID
      */
-    public function setSiteOrderID($SiteOrderID)
+    public function setSiteOrderID(string $SiteOrderID)
     {
         $this->SiteOrderID = $SiteOrderID;
     }
@@ -430,49 +430,49 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getCurrency()
+    public function getCurrency(): string
     {
         return $this->Currency;
     }
 
     /**
-     * @param mixed $Currency
+     * @param string $Currency
      */
-    public function setCurrency($Currency)
+    public function setCurrency(string $Currency)
     {
         $this->Currency = $Currency;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSecondarySiteOrderID()
+    public function getSecondarySiteOrderID(): string
     {
         return $this->SecondarySiteOrderID;
     }
 
     /**
-     * @param mixed $SecondarySiteOrderID
+     * @param string|null $SecondarySiteOrderID
      */
-    public function setSecondarySiteOrderID($SecondarySiteOrderID)
+    public function setSecondarySiteOrderID(string $SecondarySiteOrderID)
     {
         $this->SecondarySiteOrderID = $SecondarySiteOrderID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSellerOrderID()
+    public function getSellerOrderID(): string
     {
         return $this->SellerOrderID;
     }
 
     /**
-     * @param mixed $SellerOrderID
+     * @param string|null $SellerOrderID
      */
-    public function setSellerOrderID($SellerOrderID)
+    public function setSellerOrderID(string $SellerOrderID)
     {
         $this->SellerOrderID = $SellerOrderID;
     }
@@ -526,209 +526,209 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPublicNotes()
+    public function getPublicNotes(): string
     {
         return $this->PublicNotes;
     }
 
     /**
-     * @param mixed $PublicNotes
+     * @param string|null $PublicNotes
      */
-    public function setPublicNotes($PublicNotes)
+    public function setPublicNotes(string $PublicNotes)
     {
         $this->PublicNotes = $PublicNotes;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPrivateNotes()
+    public function getPrivateNotes(): string
     {
         return $this->PrivateNotes;
     }
 
     /**
-     * @param mixed $PrivateNotes
+     * @param string|null $PrivateNotes
      */
-    public function setPrivateNotes($PrivateNotes)
+    public function setPrivateNotes(string $PrivateNotes)
     {
         $this->PrivateNotes = $PrivateNotes;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBuyerUserId()
+    public function getBuyerUserId(): string
     {
         return $this->BuyerUserId;
     }
 
     /**
-     * @param mixed $BuyerUserId
+     * @param string|null $BuyerUserId
      */
-    public function setBuyerUserId($BuyerUserId)
+    public function setBuyerUserId(string $BuyerUserId)
     {
         $this->BuyerUserId = $BuyerUserId;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getBuyerEmailAddress()
+    public function getBuyerEmailAddress(): string
     {
         return $this->BuyerEmailAddress;
     }
 
     /**
-     * @param mixed $BuyerEmailAddress
+     * @param string $BuyerEmailAddress
      */
-    public function setBuyerEmailAddress($BuyerEmailAddress)
+    public function setBuyerEmailAddress(string $BuyerEmailAddress)
     {
         $this->BuyerEmailAddress = $BuyerEmailAddress;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSpecialInstructions()
+    public function getSpecialInstructions(): string
     {
         return $this->SpecialInstructions;
     }
 
     /**
-     * @param mixed $SpecialInstructions
+     * @param string|null $SpecialInstructions
      */
-    public function setSpecialInstructions($SpecialInstructions)
+    public function setSpecialInstructions(string $SpecialInstructions)
     {
         $this->SpecialInstructions = $SpecialInstructions;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getTotalPrice()
+    public function getTotalPrice(): float
     {
         return $this->TotalPrice;
     }
 
     /**
-     * @param mixed $TotalPrice
+     * @param float $TotalPrice
      */
-    public function setTotalPrice($TotalPrice)
+    public function setTotalPrice(float $TotalPrice)
     {
         $this->TotalPrice = $TotalPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTotalTaxPrice()
+    public function getTotalTaxPrice(): float
     {
         return $this->TotalTaxPrice;
     }
 
     /**
-     * @param mixed $TotalTaxPrice
+     * @param float|null $TotalTaxPrice
      */
-    public function setTotalTaxPrice($TotalTaxPrice)
+    public function setTotalTaxPrice(float $TotalTaxPrice)
     {
         $this->TotalTaxPrice = $TotalTaxPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTotalShippingPrice()
+    public function getTotalShippingPrice(): float
     {
         return $this->TotalShippingPrice;
     }
 
     /**
-     * @param mixed $TotalShippingPrice
+     * @param float|null $TotalShippingPrice
      */
-    public function setTotalShippingPrice($TotalShippingPrice)
+    public function setTotalShippingPrice(float $TotalShippingPrice)
     {
         $this->TotalShippingPrice = $TotalShippingPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTotalShippingTaxPrice()
+    public function getTotalShippingTaxPrice(): float
     {
         return $this->TotalShippingTaxPrice;
     }
 
     /**
-     * @param mixed $TotalShippingTaxPrice
+     * @param float|null $TotalShippingTaxPrice
      */
-    public function setTotalShippingTaxPrice($TotalShippingTaxPrice)
+    public function setTotalShippingTaxPrice(float $TotalShippingTaxPrice)
     {
         $this->TotalShippingTaxPrice = $TotalShippingTaxPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTotalInsurancePrice()
+    public function getTotalInsurancePrice(): float
     {
         return $this->TotalInsurancePrice;
     }
 
     /**
-     * @param mixed $TotalInsurancePrice
+     * @param float|null $TotalInsurancePrice
      */
-    public function setTotalInsurancePrice($TotalInsurancePrice)
+    public function setTotalInsurancePrice(float $TotalInsurancePrice)
     {
         $this->TotalInsurancePrice = $TotalInsurancePrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTotalGiftOptionPrice()
+    public function getTotalGiftOptionPrice(): float
     {
         return $this->TotalGiftOptionPrice;
     }
 
     /**
-     * @param mixed $TotalGiftOptionPrice
+     * @param float|null $TotalGiftOptionPrice
      */
-    public function setTotalGiftOptionPrice($TotalGiftOptionPrice)
+    public function setTotalGiftOptionPrice(float $TotalGiftOptionPrice)
     {
         $this->TotalGiftOptionPrice = $TotalGiftOptionPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTotalGiftOptionTaxPrice()
+    public function getTotalGiftOptionTaxPrice(): float
     {
         return $this->TotalGiftOptionTaxPrice;
     }
 
     /**
-     * @param mixed $TotalGiftOptionTaxPrice
+     * @param float|null $TotalGiftOptionTaxPrice
      */
-    public function setTotalGiftOptionTaxPrice($TotalGiftOptionTaxPrice)
+    public function setTotalGiftOptionTaxPrice(float $TotalGiftOptionTaxPrice)
     {
         $this->TotalGiftOptionTaxPrice = $TotalGiftOptionTaxPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getAdditionalCostOrDiscount()
+    public function getAdditionalCostOrDiscount(): float
     {
         return $this->AdditionalCostOrDiscount;
     }
 
     /**
-     * @param mixed $AdditionalCostOrDiscount
+     * @param float|null $AdditionalCostOrDiscount
      */
-    public function setAdditionalCostOrDiscount($AdditionalCostOrDiscount)
+    public function setAdditionalCostOrDiscount(float $AdditionalCostOrDiscount)
     {
         $this->AdditionalCostOrDiscount = $AdditionalCostOrDiscount;
     }
@@ -766,49 +766,49 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getRequestedShippingCarrier()
+    public function getRequestedShippingCarrier(): string
     {
         return $this->RequestedShippingCarrier;
     }
 
     /**
-     * @param mixed $RequestedShippingCarrier
+     * @param string|null $RequestedShippingCarrier
      */
-    public function setRequestedShippingCarrier($RequestedShippingCarrier)
+    public function setRequestedShippingCarrier(string $RequestedShippingCarrier)
     {
         $this->RequestedShippingCarrier = $RequestedShippingCarrier;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getRequestedShippingClass()
+    public function getRequestedShippingClass(): string
     {
         return $this->RequestedShippingClass;
     }
 
     /**
-     * @param mixed $RequestedShippingClass
+     * @param string|null $RequestedShippingClass
      */
-    public function setRequestedShippingClass($RequestedShippingClass)
+    public function setRequestedShippingClass(string $RequestedShippingClass)
     {
         $this->RequestedShippingClass = $RequestedShippingClass;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getResellerID()
+    public function getResellerID(): string
     {
         return $this->ResellerID;
     }
 
     /**
-     * @param mixed $ResellerID
+     * @param string|null $ResellerID
      */
-    public function setResellerID($ResellerID)
+    public function setResellerID(string $ResellerID)
     {
         $this->ResellerID = $ResellerID;
     }
@@ -830,33 +830,33 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getFlagDescription()
+    public function getFlagDescription(): string
     {
         return $this->FlagDescription;
     }
 
     /**
-     * @param mixed $FlagDescription
+     * @param string|null $FlagDescription
      */
-    public function setFlagDescription($FlagDescription)
+    public function setFlagDescription(string $FlagDescription)
     {
         $this->FlagDescription = $FlagDescription;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getOrderTags()
+    public function getOrderTags(): string
     {
         return $this->OrderTags;
     }
 
     /**
-     * @param mixed $OrderTags
+     * @param string|null $OrderTags
      */
-    public function setOrderTags($OrderTags)
+    public function setOrderTags(string $OrderTags)
     {
         $this->OrderTags = $OrderTags;
     }
@@ -974,17 +974,17 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
-    public function getBuyerEmailOptIn()
+    public function isBuyerEmailOptIn(): bool
     {
         return $this->BuyerEmailOptIn;
     }
 
     /**
-     * @param mixed $BuyerEmailOptIn
+     * @param bool $BuyerEmailOptIn
      */
-    public function setBuyerEmailOptIn($BuyerEmailOptIn)
+    public function setBuyerEmailOptIn(bool $BuyerEmailOptIn)
     {
         $this->BuyerEmailOptIn = $BuyerEmailOptIn;
     }
@@ -1038,593 +1038,593 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getPaymentMethod()
+    public function getPaymentMethod(): string
     {
         return $this->PaymentMethod;
     }
 
     /**
-     * @param mixed $PaymentMethod
+     * @param string $PaymentMethod
      */
-    public function setPaymentMethod($PaymentMethod)
+    public function setPaymentMethod(string $PaymentMethod)
     {
         $this->PaymentMethod = $PaymentMethod;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPaymentTransactionID()
+    public function getPaymentTransactionID(): string
     {
         return $this->PaymentTransactionID;
     }
 
     /**
-     * @param mixed $PaymentTransactionID
+     * @param string|null $PaymentTransactionID
      */
-    public function setPaymentTransactionID($PaymentTransactionID)
+    public function setPaymentTransactionID(string $PaymentTransactionID)
     {
         $this->PaymentTransactionID = $PaymentTransactionID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPaymentPaypalAccountID()
+    public function getPaymentPaypalAccountID(): string
     {
         return $this->PaymentPaypalAccountID;
     }
 
     /**
-     * @param mixed $PaymentPaypalAccountID
+     * @param string|null $PaymentPaypalAccountID
      */
-    public function setPaymentPaypalAccountID($PaymentPaypalAccountID)
+    public function setPaymentPaypalAccountID(string $PaymentPaypalAccountID)
     {
         $this->PaymentPaypalAccountID = $PaymentPaypalAccountID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPaymentCreditCardLast4()
+    public function getPaymentCreditCardLast4(): string
     {
         return $this->PaymentCreditCardLast4;
     }
 
     /**
-     * @param mixed $PaymentCreditCardLast4
+     * @param string|null $PaymentCreditCardLast4
      */
-    public function setPaymentCreditCardLast4($PaymentCreditCardLast4)
+    public function setPaymentCreditCardLast4(string $PaymentCreditCardLast4)
     {
         $this->PaymentCreditCardLast4 = $PaymentCreditCardLast4;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPaymentMerchantReferenceNumber()
+    public function getPaymentMerchantReferenceNumber(): string
     {
         return $this->PaymentMerchantReferenceNumber;
     }
 
     /**
-     * @param mixed $PaymentMerchantReferenceNumber
+     * @param string|null $PaymentMerchantReferenceNumber
      */
-    public function setPaymentMerchantReferenceNumber($PaymentMerchantReferenceNumber)
+    public function setPaymentMerchantReferenceNumber(string $PaymentMerchantReferenceNumber)
     {
         $this->PaymentMerchantReferenceNumber = $PaymentMerchantReferenceNumber;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingTitle()
+    public function getShippingTitle(): string
     {
         return $this->ShippingTitle;
     }
 
     /**
-     * @param mixed $ShippingTitle
+     * @param string|null $ShippingTitle
      */
-    public function setShippingTitle($ShippingTitle)
+    public function setShippingTitle(string $ShippingTitle)
     {
         $this->ShippingTitle = $ShippingTitle;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingFirstName()
+    public function getShippingFirstName(): string
     {
         return $this->ShippingFirstName;
     }
 
     /**
-     * @param mixed $ShippingFirstName
+     * @param string|null $ShippingFirstName
      */
-    public function setShippingFirstName($ShippingFirstName)
+    public function setShippingFirstName(string $ShippingFirstName)
     {
         $this->ShippingFirstName = $ShippingFirstName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingLastName()
+    public function getShippingLastName(): string
     {
         return $this->ShippingLastName;
     }
 
     /**
-     * @param mixed $ShippingLastName
+     * @param string|null $ShippingLastName
      */
-    public function setShippingLastName($ShippingLastName)
+    public function setShippingLastName(string $ShippingLastName)
     {
         $this->ShippingLastName = $ShippingLastName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingSuffix()
+    public function getShippingSuffix(): string
     {
         return $this->ShippingSuffix;
     }
 
     /**
-     * @param mixed $ShippingSuffix
+     * @param string|null $ShippingSuffix
      */
-    public function setShippingSuffix($ShippingSuffix)
+    public function setShippingSuffix(string $ShippingSuffix)
     {
         $this->ShippingSuffix = $ShippingSuffix;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingCompanyName()
+    public function getShippingCompanyName(): string
     {
         return $this->ShippingCompanyName;
     }
 
     /**
-     * @param mixed $ShippingCompanyName
+     * @param string|null $ShippingCompanyName
      */
-    public function setShippingCompanyName($ShippingCompanyName)
+    public function setShippingCompanyName(string $ShippingCompanyName)
     {
         $this->ShippingCompanyName = $ShippingCompanyName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingCompanyJobTitle()
+    public function getShippingCompanyJobTitle(): string
     {
         return $this->ShippingCompanyJobTitle;
     }
 
     /**
-     * @param mixed $ShippingCompanyJobTitle
+     * @param string|null $ShippingCompanyJobTitle
      */
-    public function setShippingCompanyJobTitle($ShippingCompanyJobTitle)
+    public function setShippingCompanyJobTitle(string $ShippingCompanyJobTitle)
     {
         $this->ShippingCompanyJobTitle = $ShippingCompanyJobTitle;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingDaytimePhone()
+    public function getShippingDaytimePhone(): string
     {
         return $this->ShippingDaytimePhone;
     }
 
     /**
-     * @param mixed $ShippingDaytimePhone
+     * @param string|null $ShippingDaytimePhone
      */
-    public function setShippingDaytimePhone($ShippingDaytimePhone)
+    public function setShippingDaytimePhone(string $ShippingDaytimePhone)
     {
         $this->ShippingDaytimePhone = $ShippingDaytimePhone;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingEveningPhone()
+    public function getShippingEveningPhone(): string
     {
         return $this->ShippingEveningPhone;
     }
 
     /**
-     * @param mixed $ShippingEveningPhone
+     * @param string|null $ShippingEveningPhone
      */
-    public function setShippingEveningPhone($ShippingEveningPhone)
+    public function setShippingEveningPhone(string $ShippingEveningPhone)
     {
         $this->ShippingEveningPhone = $ShippingEveningPhone;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingAddressLine1()
+    public function getShippingAddressLine1(): string
     {
         return $this->ShippingAddressLine1;
     }
 
     /**
-     * @param mixed $ShippingAddressLine1
+     * @param string|null $ShippingAddressLine1
      */
-    public function setShippingAddressLine1($ShippingAddressLine1)
+    public function setShippingAddressLine1(string $ShippingAddressLine1)
     {
         $this->ShippingAddressLine1 = $ShippingAddressLine1;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingAddressLine2()
+    public function getShippingAddressLine2(): string
     {
         return $this->ShippingAddressLine2;
     }
 
     /**
-     * @param mixed $ShippingAddressLine2
+     * @param string|null $ShippingAddressLine2
      */
-    public function setShippingAddressLine2($ShippingAddressLine2)
+    public function setShippingAddressLine2(string $ShippingAddressLine2)
     {
         $this->ShippingAddressLine2 = $ShippingAddressLine2;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingCity()
+    public function getShippingCity(): string
     {
         return $this->ShippingCity;
     }
 
     /**
-     * @param mixed $ShippingCity
+     * @param string|null $ShippingCity
      */
-    public function setShippingCity($ShippingCity)
+    public function setShippingCity(string $ShippingCity)
     {
         $this->ShippingCity = $ShippingCity;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingStateOrProvince()
+    public function getShippingStateOrProvince(): string
     {
         return $this->ShippingStateOrProvince;
     }
 
     /**
-     * @param mixed $ShippingStateOrProvince
+     * @param string|null $ShippingStateOrProvince
      */
-    public function setShippingStateOrProvince($ShippingStateOrProvince)
+    public function setShippingStateOrProvince(string $ShippingStateOrProvince)
     {
         $this->ShippingStateOrProvince = $ShippingStateOrProvince;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingStateOrProvinceName()
+    public function getShippingStateOrProvinceName(): string
     {
         return $this->ShippingStateOrProvinceName;
     }
 
     /**
-     * @param mixed $ShippingStateOrProvinceName
+     * @param string|null $ShippingStateOrProvinceName
      */
-    public function setShippingStateOrProvinceName($ShippingStateOrProvinceName)
+    public function setShippingStateOrProvinceName(string $ShippingStateOrProvinceName)
     {
         $this->ShippingStateOrProvinceName = $ShippingStateOrProvinceName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingPostalCode()
+    public function getShippingPostalCode(): string
     {
         return $this->ShippingPostalCode;
     }
 
     /**
-     * @param mixed $ShippingPostalCode
+     * @param string|null $ShippingPostalCode
      */
-    public function setShippingPostalCode($ShippingPostalCode)
+    public function setShippingPostalCode(string $ShippingPostalCode)
     {
         $this->ShippingPostalCode = $ShippingPostalCode;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getShippingCountry()
+    public function getShippingCountry(): string
     {
         return $this->ShippingCountry;
     }
 
     /**
-     * @param mixed $ShippingCountry
+     * @param string|null $ShippingCountry
      */
-    public function setShippingCountry($ShippingCountry)
+    public function setShippingCountry(string $ShippingCountry)
     {
         $this->ShippingCountry = $ShippingCountry;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingTitle()
+    public function getBillingTitle(): string
     {
         return $this->BillingTitle;
     }
 
     /**
-     * @param mixed $BillingTitle
+     * @param string|null $BillingTitle
      */
-    public function setBillingTitle($BillingTitle)
+    public function setBillingTitle(string $BillingTitle)
     {
         $this->BillingTitle = $BillingTitle;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingFirstName()
+    public function getBillingFirstName(): string
     {
         return $this->BillingFirstName;
     }
 
     /**
-     * @param mixed $BillingFirstName
+     * @param string|null $BillingFirstName
      */
-    public function setBillingFirstName($BillingFirstName)
+    public function setBillingFirstName(string $BillingFirstName)
     {
         $this->BillingFirstName = $BillingFirstName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingLastName()
+    public function getBillingLastName(): string
     {
         return $this->BillingLastName;
     }
 
     /**
-     * @param mixed $BillingLastName
+     * @param string|null $BillingLastName
      */
-    public function setBillingLastName($BillingLastName)
+    public function setBillingLastName(string $BillingLastName)
     {
         $this->BillingLastName = $BillingLastName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingSuffix()
+    public function getBillingSuffix(): string
     {
         return $this->BillingSuffix;
     }
 
     /**
-     * @param mixed $BillingSuffix
+     * @param string|null $BillingSuffix
      */
-    public function setBillingSuffix($BillingSuffix)
+    public function setBillingSuffix(string $BillingSuffix)
     {
         $this->BillingSuffix = $BillingSuffix;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingCompanyName()
+    public function getBillingCompanyName(): string
     {
         return $this->BillingCompanyName;
     }
 
     /**
-     * @param mixed $BillingCompanyName
+     * @param string|null $BillingCompanyName
      */
-    public function setBillingCompanyName($BillingCompanyName)
+    public function setBillingCompanyName(string $BillingCompanyName)
     {
         $this->BillingCompanyName = $BillingCompanyName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingCompanyJobTitle()
+    public function getBillingCompanyJobTitle(): string
     {
         return $this->BillingCompanyJobTitle;
     }
 
     /**
-     * @param mixed $BillingCompanyJobTitle
+     * @param string|null $BillingCompanyJobTitle
      */
-    public function setBillingCompanyJobTitle($BillingCompanyJobTitle)
+    public function setBillingCompanyJobTitle(string $BillingCompanyJobTitle)
     {
         $this->BillingCompanyJobTitle = $BillingCompanyJobTitle;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingDaytimePhone()
+    public function getBillingDaytimePhone(): string
     {
         return $this->BillingDaytimePhone;
     }
 
     /**
-     * @param mixed $BillingDaytimePhone
+     * @param string|null $BillingDaytimePhone
      */
-    public function setBillingDaytimePhone($BillingDaytimePhone)
+    public function setBillingDaytimePhone(string $BillingDaytimePhone)
     {
         $this->BillingDaytimePhone = $BillingDaytimePhone;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingEveningPhone()
+    public function getBillingEveningPhone(): string
     {
         return $this->BillingEveningPhone;
     }
 
     /**
-     * @param mixed $BillingEveningPhone
+     * @param string|null $BillingEveningPhone
      */
-    public function setBillingEveningPhone($BillingEveningPhone)
+    public function setBillingEveningPhone(string $BillingEveningPhone)
     {
         $this->BillingEveningPhone = $BillingEveningPhone;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingAddressLine1()
+    public function getBillingAddressLine1(): string
     {
         return $this->BillingAddressLine1;
     }
 
     /**
-     * @param mixed $BillingAddressLine1
+     * @param string|null $BillingAddressLine1
      */
-    public function setBillingAddressLine1($BillingAddressLine1)
+    public function setBillingAddressLine1(string $BillingAddressLine1)
     {
         $this->BillingAddressLine1 = $BillingAddressLine1;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingAddressLine2()
+    public function getBillingAddressLine2(): string
     {
         return $this->BillingAddressLine2;
     }
 
     /**
-     * @param mixed $BillingAddressLine2
+     * @param string|null $BillingAddressLine2
      */
-    public function setBillingAddressLine2($BillingAddressLine2)
+    public function setBillingAddressLine2(string $BillingAddressLine2)
     {
         $this->BillingAddressLine2 = $BillingAddressLine2;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingCity()
+    public function getBillingCity(): string
     {
         return $this->BillingCity;
     }
 
     /**
-     * @param mixed $BillingCity
+     * @param string|null $BillingCity
      */
-    public function setBillingCity($BillingCity)
+    public function setBillingCity(string $BillingCity)
     {
         $this->BillingCity = $BillingCity;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingStateOrProvince()
+    public function getBillingStateOrProvince(): string
     {
         return $this->BillingStateOrProvince;
     }
 
     /**
-     * @param mixed $BillingStateOrProvince
+     * @param string|null $BillingStateOrProvince
      */
-    public function setBillingStateOrProvince($BillingStateOrProvince)
+    public function setBillingStateOrProvince(string $BillingStateOrProvince)
     {
         $this->BillingStateOrProvince = $BillingStateOrProvince;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingStateOrProvinceName()
+    public function getBillingStateOrProvinceName(): string
     {
         return $this->BillingStateOrProvinceName;
     }
 
     /**
-     * @param mixed $BillingStateOrProvinceName
+     * @param string|null $BillingStateOrProvinceName
      */
-    public function setBillingStateOrProvinceName($BillingStateOrProvinceName)
+    public function setBillingStateOrProvinceName(string $BillingStateOrProvinceName)
     {
         $this->BillingStateOrProvinceName = $BillingStateOrProvinceName;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingPostalCode()
+    public function getBillingPostalCode(): string
     {
         return $this->BillingPostalCode;
     }
 
     /**
-     * @param mixed $BillingPostalCode
+     * @param string|null $BillingPostalCode
      */
-    public function setBillingPostalCode($BillingPostalCode)
+    public function setBillingPostalCode(string $BillingPostalCode)
     {
         $this->BillingPostalCode = $BillingPostalCode;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getBillingCountry()
+    public function getBillingCountry(): string
     {
         return $this->BillingCountry;
     }
 
     /**
-     * @param mixed $BillingCountry
+     * @param string|null $BillingCountry
      */
-    public function setBillingCountry($BillingCountry)
+    public function setBillingCountry(string $BillingCountry)
     {
         $this->BillingCountry = $BillingCountry;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getPromotionCode()
+    public function getPromotionCode(): string
     {
         return $this->PromotionCode;
     }
 
     /**
-     * @param mixed $PromotionCode
+     * @param string|null $PromotionCode
      */
-    public function setPromotionCode($PromotionCode)
+    public function setPromotionCode(string $PromotionCode)
     {
         $this->PromotionCode = $PromotionCode;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getPromotionAmount()
+    public function getPromotionAmount(): float
     {
         return $this->PromotionAmount;
     }
 
     /**
-     * @param mixed $PromotionAmount
+     * @param float|null $PromotionAmount
      */
-    public function setPromotionAmount($PromotionAmount)
+    public function setPromotionAmount(float $PromotionAmount)
     {
         $this->PromotionAmount = $PromotionAmount;
     }

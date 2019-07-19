@@ -4,394 +4,443 @@ namespace AllDigitalRewards\ChannelAdvisor\Entities;
 
 class OrderItem extends AbstractEntity
 {
+    /**
+     * @var int
+     */
     private $ID;
+    /**
+     * @var int
+     */
     private $ProfileID;
+    /**
+     * @var int
+     */
     private $OrderID;
+    /**
+     * @var int
+     */
     private $ProductID;
+    /**
+     * @var string|null
+     */
     private $SiteOrderItemID;
+    /**
+     * @var string|null
+     */
     private $SellerOrderItemID;
+    /**
+     * @var string|null
+     */
     private $SiteListingID;
+    /**
+     * @var string
+     */
     private $Sku;
+    /**
+     * @var string
+     */
     private $Title;
+    /**
+     * @var int
+     */
     private $Quantity;
+    /**
+     * @var float
+     */
     private $UnitPrice;
+    /**
+     * @var float|null
+     */
     private $TaxPrice;
+    /**
+     * @var float|null
+     */
     private $ShippingPrice;
+    /**
+     * @var float|null
+     */
     private $ShippingTaxPrice;
+    /**
+     * @var float|null
+     */
     private $RecyclingFee;
-    private $UnitEstimatedShippingCost;
+    /**
+     * @var string|null
+     */
     private $GiftMessage;
+    /**
+     * @var string|null
+     */
     private $GiftNotes;
+    /**
+     * @var float|null
+     */
     private $GiftPrice;
+    /**
+     * @var string|null
+     */
     private $GiftTaxPrice;
+    /**
+     * @var boolean|null
+     */
     private $IsBundle;
+    /**
+     * @var string|null
+     */
     private $ItemURL;
+    /**
+     * @var string|null
+     */
     private $HarmonizedCode;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getID()
+    public function getID(): int
     {
         return $this->ID;
     }
 
     /**
-     * @param mixed $ID
+     * @param int $ID
      */
-    public function setID($ID)
+    public function setID(int $ID)
     {
         $this->ID = $ID;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getProfileID()
+    public function getProfileID(): int
     {
         return $this->ProfileID;
     }
 
     /**
-     * @param mixed $ProfileID
+     * @param int $ProfileID
      */
-    public function setProfileID($ProfileID)
+    public function setProfileID(int $ProfileID)
     {
         $this->ProfileID = $ProfileID;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getOrderID()
+    public function getOrderID(): int
     {
         return $this->OrderID;
     }
 
     /**
-     * @param mixed $OrderID
+     * @param int $OrderID
      */
-    public function setOrderID($OrderID)
+    public function setOrderID(int $OrderID)
     {
         $this->OrderID = $OrderID;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getProductID()
+    public function getProductID(): int
     {
         return $this->ProductID;
     }
 
     /**
-     * @param mixed $ProductID
+     * @param int $ProductID
      */
-    public function setProductID($ProductID)
+    public function setProductID(int $ProductID)
     {
         $this->ProductID = $ProductID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSiteOrderItemID()
+    public function getSiteOrderItemID(): string
     {
         return $this->SiteOrderItemID;
     }
 
     /**
-     * @param mixed $SiteOrderItemID
+     * @param string|null $SiteOrderItemID
      */
-    public function setSiteOrderItemID($SiteOrderItemID)
+    public function setSiteOrderItemID(string $SiteOrderItemID)
     {
         $this->SiteOrderItemID = $SiteOrderItemID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSellerOrderItemID()
+    public function getSellerOrderItemID(): string
     {
         return $this->SellerOrderItemID;
     }
 
     /**
-     * @param mixed $SellerOrderItemID
+     * @param string|null $SellerOrderItemID
      */
-    public function setSellerOrderItemID($SellerOrderItemID)
+    public function setSellerOrderItemID(string $SellerOrderItemID)
     {
         $this->SellerOrderItemID = $SellerOrderItemID;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getSiteListingID()
+    public function getSiteListingID(): string
     {
         return $this->SiteListingID;
     }
 
     /**
-     * @param mixed $SiteListingID
+     * @param string|null $SiteListingID
      */
-    public function setSiteListingID($SiteListingID)
+    public function setSiteListingID(string $SiteListingID)
     {
         $this->SiteListingID = $SiteListingID;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getSku()
+    public function getSku(): string
     {
         return $this->Sku;
     }
 
     /**
-     * @param mixed $Sku
+     * @param string $Sku
      */
-    public function setSku($Sku)
+    public function setSku(string $Sku)
     {
         $this->Sku = $Sku;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->Title;
     }
 
     /**
-     * @param mixed $Title
+     * @param string $Title
      */
-    public function setTitle($Title)
+    public function setTitle(string $Title)
     {
         $this->Title = $Title;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getQuantity()
+    public function getQuantity(): int
     {
         return $this->Quantity;
     }
 
     /**
-     * @param mixed $Quantity
+     * @param int $Quantity
      */
-    public function setQuantity($Quantity)
+    public function setQuantity(int $Quantity)
     {
         $this->Quantity = $Quantity;
     }
 
     /**
-     * @return mixed
+     * @return float
      */
-    public function getUnitPrice()
+    public function getUnitPrice(): float
     {
         return $this->UnitPrice;
     }
 
     /**
-     * @param mixed $UnitPrice
+     * @param float $UnitPrice
      */
-    public function setUnitPrice($UnitPrice)
+    public function setUnitPrice(float $UnitPrice)
     {
         $this->UnitPrice = $UnitPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getTaxPrice()
+    public function getTaxPrice(): float
     {
         return $this->TaxPrice;
     }
 
     /**
-     * @param mixed $TaxPrice
+     * @param float|null $TaxPrice
      */
-    public function setTaxPrice($TaxPrice)
+    public function setTaxPrice(float $TaxPrice)
     {
         $this->TaxPrice = $TaxPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getShippingPrice()
+    public function getShippingPrice(): float
     {
         return $this->ShippingPrice;
     }
 
     /**
-     * @param mixed $ShippingPrice
+     * @param float|null $ShippingPrice
      */
-    public function setShippingPrice($ShippingPrice)
+    public function setShippingPrice(float $ShippingPrice)
     {
         $this->ShippingPrice = $ShippingPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getShippingTaxPrice()
+    public function getShippingTaxPrice(): float
     {
         return $this->ShippingTaxPrice;
     }
 
     /**
-     * @param mixed $ShippingTaxPrice
+     * @param float|null $ShippingTaxPrice
      */
-    public function setShippingTaxPrice($ShippingTaxPrice)
+    public function setShippingTaxPrice(float $ShippingTaxPrice)
     {
         $this->ShippingTaxPrice = $ShippingTaxPrice;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getRecyclingFee()
+    public function getRecyclingFee(): float
     {
         return $this->RecyclingFee;
     }
 
     /**
-     * @param mixed $RecyclingFee
+     * @param float|null $RecyclingFee
      */
-    public function setRecyclingFee($RecyclingFee)
+    public function setRecyclingFee(float $RecyclingFee)
     {
         $this->RecyclingFee = $RecyclingFee;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getUnitEstimatedShippingCost()
-    {
-        return $this->UnitEstimatedShippingCost;
-    }
-
-    /**
-     * @param mixed $UnitEstimatedShippingCost
-     */
-    public function setUnitEstimatedShippingCost($UnitEstimatedShippingCost)
-    {
-        $this->UnitEstimatedShippingCost = $UnitEstimatedShippingCost;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getGiftMessage()
+    public function getGiftMessage(): string
     {
         return $this->GiftMessage;
     }
 
     /**
-     * @param mixed $GiftMessage
+     * @param string|null $GiftMessage
      */
-    public function setGiftMessage($GiftMessage)
+    public function setGiftMessage(string $GiftMessage)
     {
         $this->GiftMessage = $GiftMessage;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getGiftNotes()
+    public function getGiftNotes(): string
     {
         return $this->GiftNotes;
     }
 
     /**
-     * @param mixed $GiftNotes
+     * @param string|null $GiftNotes
      */
-    public function setGiftNotes($GiftNotes)
+    public function setGiftNotes(string $GiftNotes)
     {
         $this->GiftNotes = $GiftNotes;
     }
 
     /**
-     * @return mixed
+     * @return float|null
      */
-    public function getGiftPrice()
+    public function getGiftPrice(): float
     {
         return $this->GiftPrice;
     }
 
     /**
-     * @param mixed $GiftPrice
+     * @param float|null $GiftPrice
      */
-    public function setGiftPrice($GiftPrice)
+    public function setGiftPrice(float $GiftPrice)
     {
         $this->GiftPrice = $GiftPrice;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getGiftTaxPrice()
+    public function getGiftTaxPrice(): string
     {
         return $this->GiftTaxPrice;
     }
 
     /**
-     * @param mixed $GiftTaxPrice
+     * @param string|null $GiftTaxPrice
      */
-    public function setGiftTaxPrice($GiftTaxPrice)
+    public function setGiftTaxPrice(string $GiftTaxPrice)
     {
         $this->GiftTaxPrice = $GiftTaxPrice;
     }
 
     /**
-     * @return mixed
+     * @return bool|null
      */
-    public function getIsBundle()
+    public function getIsBundle(): bool
     {
         return $this->IsBundle;
     }
 
     /**
-     * @param mixed $IsBundle
+     * @param bool|null $IsBundle
      */
-    public function setIsBundle($IsBundle)
+    public function setIsBundle(bool $IsBundle)
     {
         $this->IsBundle = $IsBundle;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getItemURL()
+    public function getItemURL(): string
     {
         return $this->ItemURL;
     }
 
     /**
-     * @param mixed $ItemURL
+     * @param string|null $ItemURL
      */
-    public function setItemURL($ItemURL)
+    public function setItemURL(string $ItemURL)
     {
         $this->ItemURL = $ItemURL;
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
-    public function getHarmonizedCode()
+    public function getHarmonizedCode(): string
     {
         return $this->HarmonizedCode;
     }
 
     /**
-     * @param mixed $HarmonizedCode
+     * @param string|null $HarmonizedCode
      */
-    public function setHarmonizedCode($HarmonizedCode)
+    public function setHarmonizedCode(string $HarmonizedCode)
     {
         $this->HarmonizedCode = $HarmonizedCode;
     }

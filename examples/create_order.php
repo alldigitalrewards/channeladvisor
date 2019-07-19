@@ -9,7 +9,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
 
 $sampleOrder = [
     "ProfileID" => 12003121, //Identifies the ChannelAdvisor profile
-    "SiteOrderID" => "12003121-1234123456", // This should be the Transaction GUID
+    "SiteOrderID" => "12003121-1234123457", // This should be the Transaction GUID
     "TotalPrice" => 38.41,
     "BuyerEmailAddress" => "jmuto@alldigitalrewards.com",
     "ShippingTitle" => "Mr.",
