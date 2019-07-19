@@ -208,6 +208,20 @@ class Client
     }
 
     /**
+     * @param int $orderId
+     * @return bool
+     */
+    public function cancelOrder(int $orderId)
+    {
+        $this->sendRequest(
+            'POST',
+            "/v1/Orders($orderId)/Adjust?access_token=" . $this->getAccessToken()->getAccessToken()
+        );
+
+        return $this->statusCode === 204;
+    }
+
+    /**
      * When to use:
      * Fetch Orders by exported or not
      *
