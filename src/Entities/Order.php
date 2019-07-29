@@ -363,7 +363,7 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getOrderId()
     {
@@ -371,7 +371,7 @@ class Order extends AbstractEntity
     }
 
     /**
-     * @param mixed $OrderId
+     * @param int $OrderId
      */
     public function setOrderId($OrderId)
     {
