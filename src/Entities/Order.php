@@ -9,329 +9,342 @@ class Order extends AbstractEntity
      *
      * Unique identifier of the product within the ChannelAdvisor account.
      */
-    private $id;
+    protected $id;
+
+    protected $OrderId;
     /**
      * @var int
      *
      * Identifies the ChannelAdvisor account.
      */
-    private $ProfileID;
+    protected $ProfileID;
     /**
      * @var int
      */
-    private $SiteID;
+    protected $SiteID;
     /**
      * @var string
      */
-    private $SiteName;
+    protected $SiteName;
     /**
      * @var string
      */
-    private $SiteOrderID;
+    protected $SiteOrderID;
     /**
      * @var mixed
      */
-    private $SiteAccountID;
+    protected $SiteAccountID;
     /**
      * @var string
      */
-    private $Currency;
+    protected $Currency;
     /**
      * @var string|null
      */
-    private $SecondarySiteOrderID;
+    protected $SecondarySiteOrderID;
     /**
      * @var string|null
      */
-    private $SellerOrderID;
+    protected $SellerOrderID;
     /**
      * @var mixed
      */
-    private $CheckoutSourceID;
+    protected $CheckoutSourceID;
     /**
      * @var mixed
      */
-    private $CreateDateUtc;
+    protected $CreateDateUtc;
     /**
      * @var mixed
      */
-    private $ImportDateUtc;
+    protected $ImportDateUtc;
     /**
      * @var string|null
      */
-    private $PublicNotes;
+    protected $PublicNotes;
     /**
      * @var string|null
      */
-    private $PrivateNotes;
+    protected $PrivateNotes;
     /**
      * @var string|null
      */
-    private $BuyerUserId;
+    protected $BuyerUserId;
     /**
      * @var string
      */
-    private $BuyerEmailAddress;
+    protected $BuyerEmailAddress;
     /**
      * @var string|null
      */
-    private $SpecialInstructions;
+    protected $SpecialInstructions;
     /**
      * @var float
      */
-    private $TotalPrice;
+    protected $TotalPrice;
     /**
      * @var float|null
      */
-    private $TotalTaxPrice;
+    protected $TotalTaxPrice;
     /**
      * @var float|null
      */
-    private $TotalShippingPrice;
+    protected $TotalShippingPrice;
     /**
      * @var float|null
      */
-    private $TotalShippingTaxPrice;
+    protected $TotalShippingTaxPrice;
     /**
      * @var float|null
      */
-    private $TotalInsurancePrice;
+    protected $TotalInsurancePrice;
     /**
      * @var float|null
      */
-    private $TotalGiftOptionPrice;
+    protected $TotalGiftOptionPrice;
     /**
      * @var float|null
      */
-    private $TotalGiftOptionTaxPrice;
+    protected $TotalGiftOptionTaxPrice;
     /**
      * @var float|null
      */
-    private $AdditionalCostOrDiscount;
+    protected $AdditionalCostOrDiscount;
     /**
      * @var mixed
      */
-    private $EstimatedShipDateUtc;
+    protected $EstimatedShipDateUtc;
     /**
      * @var mixed
      */
-    private $DeliverByDateUtc;
+    protected $DeliverByDateUtc;
     /**
      * @var string|null
      */
-    private $RequestedShippingCarrier;
+    protected $RequestedShippingCarrier;
     /**
      * @var string|null
      */
-    private $RequestedShippingClass;
+    protected $RequestedShippingClass;
     /**
      * @var string|null
      */
-    private $ResellerID;
+    protected $ResellerID;
     /**
      * @var mixed
      */
-    private $FlagID;
+    protected $FlagID;
     /**
      * @var string|null
      */
-    private $FlagDescription;
+    protected $FlagDescription;
     /**
      * @var string|null
      */
-    private $OrderTags;
+    protected $OrderTags;
     /**
      * @var mixed
      */
-    private $DistributionCenterTypeRollup;
+    protected $DistributionCenterTypeRollup;
     /**
      * @var mixed
      */
-    private $CheckoutStatus;
+    protected $CheckoutStatus;
     /**
      * @var mixed
      */
-    private $PaymentStatus;
+    protected $PaymentStatus;
     /**
      * @var mixed
      */
-    private $ShippingStatus;
+    protected $ShippingStatus;
     /**
      * @var mixed
      */
-    private $CheckoutDateUtc;
+    protected $CheckoutDateUtc;
     /**
      * @var mixed
      */
-    private $PaymentDateUtc;
+    protected $PaymentDateUtc;
     /**
      * @var mixed
      */
-    private $ShippingDateUtc;
+    protected $ShippingDateUtc;
     /**
      * @var boolean
      */
-    private $BuyerEmailOptIn;
+    protected $BuyerEmailOptIn;
     /**
      * @var mixed
      */
-    private $OrderTaxType;
+    protected $OrderTaxType;
     /**
      * @var mixed
      */
-    private $ShippingTaxType;
+    protected $ShippingTaxType;
     /**
      * @var mixed
      */
-    private $GiftOptionsTaxType;
+    protected $GiftOptionsTaxType;
     /**
      * @var string
      */
-    private $PaymentMethod;
+    protected $PaymentMethod;
     /**
      * @var string|null
      */
-    private $PaymentTransactionID;
+    protected $PaymentTransactionID;
     /**
      * @var string|null
      */
-    private $PaymentPaypalAccountID;
+    protected $PaymentPaypalAccountID;
     /**
      * @var string|null
      */
-    private $PaymentCreditCardLast4;
+    protected $PaymentCreditCardLast4;
     /**
      * @var string|null
      */
-    private $PaymentMerchantReferenceNumber;
+    protected $PaymentMerchantReferenceNumber;
     /**
      * @var string|null
      */
-    private $ShippingTitle;
+    protected $ShippingTitle;
     /**
      * @var string|null
      */
-    private $ShippingFirstName;
+    protected $ShippingFirstName;
     /**
      * @var string|null
      */
-    private $ShippingLastName;
+    protected $ShippingLastName;
     /**
      * @var string|null
      */
-    private $ShippingSuffix;
+    protected $ShippingSuffix;
     /**
      * @var string|null
      */
-    private $ShippingCompanyName;
+    protected $ShippingCompanyName;
     /**
      * @var string|null
      */
-    private $ShippingCompanyJobTitle;
+    protected $ShippingCompanyJobTitle;
     /**
      * @var string|null
      */
-    private $ShippingDaytimePhone;
+    protected $ShippingDaytimePhone;
     /**
      * @var string|null
      */
-    private $ShippingEveningPhone;
+    protected $ShippingEveningPhone;
     /**
      * @var string|null
      */
-    private $ShippingAddressLine1;
+    protected $ShippingAddressLine1;
     /**
      * @var string|null
      */
-    private $ShippingAddressLine2;
+    protected $ShippingAddressLine2;
     /**
      * @var string|null
      */
-    private $ShippingCity;
+    protected $ShippingCity;
     /**
      * @var string|null
      */
-    private $ShippingStateOrProvince;
+    protected $ShippingStateOrProvince;
     /**
      * @var string|null
      */
-    private $ShippingStateOrProvinceName;
+    protected $ShippingStateOrProvinceName;
     /**
      * @var string|null
      */
-    private $ShippingPostalCode;
+    protected $ShippingPostalCode;
     /**
      * @var string|null
      */
-    private $ShippingCountry;
+    protected $ShippingCountry;
     /**
      * @var string|null
      */
-    private $BillingTitle;
+    protected $BillingTitle;
     /**
      * @var string|null
      */
-    private $BillingFirstName;
+    protected $BillingFirstName;
     /**
      * @var string|null
      */
-    private $BillingLastName;
+    protected $BillingLastName;
     /**
      * @var string|null
      */
-    private $BillingSuffix;
+    protected $BillingSuffix;
     /**
      * @var string|null
      */
-    private $BillingCompanyName;
+    protected $BillingCompanyName;
     /**
      * @var string|null
      */
-    private $BillingCompanyJobTitle;
+    protected $BillingCompanyJobTitle;
     /**
      * @var string|null
      */
-    private $BillingDaytimePhone;
+    protected $BillingDaytimePhone;
     /**
      * @var string|null
      */
-    private $BillingEveningPhone;
+    protected $BillingEveningPhone;
     /**
      * @var string|null
      */
-    private $BillingAddressLine1;
+    protected $BillingAddressLine1;
     /**
      * @var string|null
      */
-    private $BillingAddressLine2;
+    protected $BillingAddressLine2;
     /**
      * @var string|null
      */
-    private $BillingCity;
+    protected $BillingCity;
     /**
      * @var string|null
      */
-    private $BillingStateOrProvince;
+    protected $BillingStateOrProvince;
     /**
      * @var string|null
      */
-    private $BillingStateOrProvinceName;
+    protected $BillingStateOrProvinceName;
     /**
      * @var string|null
      */
-    private $BillingPostalCode;
+    protected $BillingPostalCode;
     /**
      * @var string|null
      */
-    private $BillingCountry;
+    protected $BillingCountry;
     /**
      * @var string|null
      */
-    private $PromotionCode;
+    protected $PromotionCode;
     /**
      * @var float|null
      */
-    private $PromotionAmount;
+    protected $PromotionAmount;
+
+    /**
+     * Order constructor.
+     * @param null $data
+     */
+    public function __construct($data = null)
+    {
+        parent::__construct($data);
+
+        $this->OrderId = $this->id;
+    }
 
     /**
      * @return int
@@ -347,6 +360,22 @@ class Order extends AbstractEntity
     public function setId(int $id)
     {
         $this->id = $id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrderId()
+    {
+        return $this->OrderId;
+    }
+
+    /**
+     * @param int $OrderId
+     */
+    public function setOrderId($OrderId)
+    {
+        $this->OrderId = $OrderId;
     }
 
     /**
@@ -971,6 +1000,14 @@ class Order extends AbstractEntity
     public function setShippingDateUtc($ShippingDateUtc)
     {
         $this->ShippingDateUtc = $ShippingDateUtc;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getBuyerEmailOptIn(): bool
+    {
+        return $this->BuyerEmailOptIn;
     }
 
     /**
