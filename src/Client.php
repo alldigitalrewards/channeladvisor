@@ -115,7 +115,7 @@ class Client
             return new Product($response);
         }
 
-        $this->setErrors('Invalid Sku: ' . $product_id);
+        $this->setErrors('Invalid Product Id: ' . $product_id);
 
         throw new ApiException(implode(', ', $this->getErrors()));
     }
@@ -137,7 +137,7 @@ class Client
         }
 
 
-        $this->setErrors('Invalid Order Id: ' . $product_id);
+        $this->setErrors('Invalid Product Id: ' . $product_id);
 
         throw new ApiException(implode(', ', $this->getErrors()));
     }

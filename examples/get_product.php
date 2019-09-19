@@ -6,8 +6,8 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "b52z1zxbrvaw1vya168nfmmwlw8e8ouf",
     "2CKkHOXvzUKuDmN0080kyg"
 );
-
-$product = $client->getProduct('6200207');
+//6200111, 6200112, 6200117
+$product = $client->getProduct('6200205');
 
 print_r($product);
 print_r($client->getErrors());
