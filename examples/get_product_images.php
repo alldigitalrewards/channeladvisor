@@ -7,4 +7,4 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "2CKkHOXvzUKuDmN0080kyg"
 );
 
-print_r($client->getProductImages('6200139'));
+print_r($client->getProductImages('6200205'));
