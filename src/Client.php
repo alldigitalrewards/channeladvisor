@@ -136,8 +136,9 @@ class Client
             return new ImageCollection($response);
         }
 
-
-        $this->setErrors('Invalid Product Id: ' . $product_id);
+        if (empty($response->value) === true) {
+            $this->setErrors('No image available');
+        }
 
         throw new ApiException(implode(', ', $this->getErrors()));
     }
@@ -480,7 +481,7 @@ class Client
             return;
         }
         foreach ($array as $k => $v) {
-            if ($k === 'Message' || $v['message']) {
+            if ($k === 'Message' || isset($v['message']) === true) {
                 $this->errors[] = $k === 'Message' ? $v : $v['message'];
                 continue;
             }
