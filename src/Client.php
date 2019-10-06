@@ -481,7 +481,7 @@ class Client
             return;
         }
         foreach ($array as $k => $v) {
-            if ($k === 'Message' || isset($v['message']) === true) {
+            if ($k === 'Message' || empty($v['message']) === false) {
                 $this->errors[] = $k === 'Message' ? $v : $v['message'];
                 continue;
             }
