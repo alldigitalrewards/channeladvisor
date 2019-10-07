@@ -352,6 +352,8 @@ class Client
     private function sendRequest($type, $url, $body = null)
     {
         try {
+            $this->errors = [];
+
             $response = $this->getHttpClient()->request(
                 $type,
                 $url,
@@ -371,6 +373,7 @@ class Client
             if ($response->getStatusCode() >= 200 && $response->getStatusCode() <= 299) {
                 return $jsonObj;
             }
+
             $this->buildErrorsArray($jsonObj);
         } catch (\Exception $e) {
             $this->errors[] = $e->getMessage();
