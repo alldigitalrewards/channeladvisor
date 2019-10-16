@@ -480,7 +480,7 @@ class Client
 
         if (!is_array($array)) {
             //sometimes comes back NULL
-            $this->errors[] = $array ?? 'No error message available.';
+            $this->errors[] = $array ?? 'No error message available. Status Code: ' . $this->statusCode;
             return;
         }
         foreach ($array as $k => $v) {
