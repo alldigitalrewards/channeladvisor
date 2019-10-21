@@ -7,6 +7,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "get from shared notes"
 );
 
-$orders = $client->getOrders();
-
-print_r($orders);
+//B72731-9EBE7
+$request = $client->bulkProductsRequest();
+print_r($request);
+print_r($client->getErrors());
