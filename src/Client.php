@@ -8,6 +8,7 @@ use AllDigitalRewards\ChannelAdvisor\Collection\OrderCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\OrderItemCollection;
 use AllDigitalRewards\ChannelAdvisor\Collection\ProductCollection;
 use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
+use AllDigitalRewards\ChannelAdvisor\Entities\BulkProductRequestResponse;
 use AllDigitalRewards\ChannelAdvisor\Entities\Order;
 use AllDigitalRewards\ChannelAdvisor\Entities\Product;
 
@@ -41,6 +42,10 @@ class Client
     private $errors = [];
 
     private $statusCode;
+    /**
+     * @var string
+     */
+    private $contentType = 'application/json';
 
     /**
      * Client constructor.
@@ -100,6 +105,46 @@ class Client
         }
 
         return new ProductCollection($response);
+    }
+
+    /**
+     * @throws ApiException
+     */
+    public function bulkProductsRequest()
+    {
+        $url = 'v1/ProductExport?access_token='
+            . $this->getAccessToken()->getAccessToken()
+            . '&profileid=' . $this->applicationId
+            . '&$filter=substringof(SKU, \'contains\') and TotalQuantity gt 0';
+        $this->contentType = 'text/plain';
+
+        $response = $this->sendRequest('POST', $url);
+        if ($this->statusCode !== 200) {
+            $this->setErrors('Api Exception');
+            throw new ApiException(implode(', ', $this->getErrors()));
+        }
+
+        return new BulkProductRequestResponse($response);
+    }
+
+    /**
+     * @param string $token
+     * @return BulkProductRequestResponse
+     * @throws ApiException
+     */
+    public function bulkProductRequestStatus(string $token)
+    {
+        $url = 'v1/ProductExport?access_token='
+            . $this->getAccessToken()->getAccessToken()
+            . '&token=' . $token;
+
+        $response = $this->sendRequest('POST', $url);
+        if ($this->statusCode !== 200) {
+            $this->setErrors('Api Exception');
+            throw new ApiException(implode(', ', $this->getErrors()));
+        }
+
+        return new BulkProductRequestResponse($response);
     }
 
     /**
@@ -361,7 +406,7 @@ class Client
                     'headers' => [
                         'Authorization' => $this->getAccessTokenAuthorizationHeader(),
                         'Accept' => 'application/json',
-                        'Content-Type' => 'application/json'
+                        'Content-Type' => $this->contentType
                     ],
                     'body' => json_encode($body)
                 ]
