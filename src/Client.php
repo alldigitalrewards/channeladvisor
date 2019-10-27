@@ -45,7 +45,7 @@ class Client
     /**
      * @var string
      */
-    private $contentType = 'application/json';
+    private $profileId = 12003121;
 
     /**
      * Client constructor.
@@ -114,17 +114,29 @@ class Client
     {
         $url = 'v1/ProductExport?access_token='
             . $this->getAccessToken()->getAccessToken()
-            . '&profileid=' . $this->applicationId
-            . '&$filter=substringof(SKU, \'contains\') and TotalQuantity gt 0';
-        $this->contentType = 'text/plain';
+            . '&profileid=' . $this->profileId
+            . '&$filter=TotalQuantity%20gt%200';
 
-        $response = $this->sendRequest('POST', $url);
-        if ($this->statusCode !== 200) {
+        $response = $this->getHttpClient()->post(
+            $url,
+            [
+                'headers' => [
+                    'Authorization' => $this->getAccessTokenAuthorizationHeader(),
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'text/plain'
+                ]
+            ]
+        );
+
+        $jsonObj = json_decode($response->getBody());
+
+        if ($response->getStatusCode() !== 200) {
+            $this->buildErrorsArray($jsonObj);
             $this->setErrors('Api Exception');
             throw new ApiException(implode(', ', $this->getErrors()));
         }
 
-        return new BulkProductRequestResponse($response);
+        return new BulkProductRequestResponse($jsonObj);
     }
 
     /**
@@ -138,13 +150,26 @@ class Client
             . $this->getAccessToken()->getAccessToken()
             . '&token=' . $token;
 
-        $response = $this->sendRequest('POST', $url);
-        if ($this->statusCode !== 200) {
+        $response = $this->getHttpClient()->get(
+            $url,
+            [
+                'headers' => [
+                    'Authorization' => $this->getAccessTokenAuthorizationHeader(),
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json'
+                ]
+            ]
+        );
+
+        $jsonObj = json_decode($response->getBody());
+
+        if ($response->getStatusCode() !== 200) {
+            $this->buildErrorsArray($jsonObj);
             $this->setErrors('Api Exception');
             throw new ApiException(implode(', ', $this->getErrors()));
         }
 
-        return new BulkProductRequestResponse($response);
+        return new BulkProductRequestResponse($jsonObj);
     }
 
     /**
@@ -406,12 +431,11 @@ class Client
                     'headers' => [
                         'Authorization' => $this->getAccessTokenAuthorizationHeader(),
                         'Accept' => 'application/json',
-                        'Content-Type' => $this->contentType
+                        'Content-Type' => 'application/json'
                     ],
                     'body' => json_encode($body)
                 ]
             );
-
             $jsonObj = json_decode($response->getBody());
             $this->statusCode = $response->getStatusCode();
 
