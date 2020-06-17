@@ -1,0 +1,12 @@
+{
+  "@odata.context": "https://api.channeladvisor.com/v1/$metadata#Images",
+  "value": [
+    {
+      "ProductID": 6200139,
+      "ProfileID": 123456789,
+      "PlacementName": "ITEMIMAGEURL1",
+      "Abbreviation": "1",
+      "Url": "https://www.vitaminlife.com/common/images/products/large/021078001423.jpg"
+    }
+  ]
+}
