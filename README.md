@@ -1,4 +1,8 @@
 # Unofficial ChannelAdvisor Library
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/alldigitalrewards/channeladvisor.svg?style=flat-square)](https://packagist.org/packages/backerclub/indiegogo)
+![](https://github.com/alldigitalrewards/channeladvisor/workflows/Run%20Tests/badge.svg?branch=master)
+[![StyleCI](https://styleci.io/repos/273017067/shield)](https://styleci.io/repos/273017067)
+[![Total Downloads](https://img.shields.io/packagist/dt/alldigitalrewards/channeladvisor.svg?style=flat-square)](https://packagist.org/packages/alldigitalrewards/channeladvisor)
 
 This is a ChannelAdvisor API Wrapper Library
 

@@ -1,0 +1,32 @@
+name: "Run Tests"
+
+on: [push, pull_request]
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 7.2
+          extensions: ext-json
+          coverage: none
+
+      - name: Install dependencies
+        run: |
+          composer install
+
+      - name: Execute tests
+        run: vendor/bin/phpunit > test_results.txt
+
+      - name: save output
+        uses: actions/upload-artifact@v1
+        with:
+          name: output
+          path: test_results.txt

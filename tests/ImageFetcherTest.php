@@ -57,10 +57,10 @@ class ImageFetcherTest extends TestCase
         );
 
         $client = new Client(
-            'profile-id',
             'refresh-token',
             'application-id',
-            'shared-secret'
+            'shared-secret',
+            123456789
         );
 
         $client->setHttpClient($guzzleClient);
