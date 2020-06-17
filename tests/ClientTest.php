@@ -1,6 +1,6 @@
 <?php
 
-namespace AllDigitalRewards\CashStar;
+namespace AllDigitalRewards\ChannelAdvisor;
 
 use PHPUnit\Framework\TestCase;
 

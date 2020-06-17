@@ -8,7 +8,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     123456789
 );
 
-$order = $client->getOrder(12278055);
+$order = $client->getOrder(123456789);
 
 var_dump($order);
 print_r($client->getErrors());

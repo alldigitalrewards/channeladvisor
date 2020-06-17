@@ -3,9 +3,7 @@
     <description>PSR coding standard</description>
     <exclude-pattern>*/vendor/*</exclude-pattern>
     <exclude-pattern>*/build/*</exclude-pattern>
-    <rule ref="PSR2">
-        <exclude name="PSR1.Classes.ClassDeclaration.MissingNamespace"/>
-    </rule>
+    <rule ref="PSR12"/>
     <rule ref="Squiz.PHP.CommentedOutCode"/>
     <rule ref="Internal.NoCodeFound">
         <severity>0</severity>

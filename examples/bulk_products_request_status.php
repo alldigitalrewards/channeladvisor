@@ -8,6 +8,5 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     123456789
 );
 
-//B72731-9EBE7
-$request = $client->bulkProductRequestStatus('B72731-9EBE7');
+$request = $client->bulkProductRequestStatus('ABCDE-FGHIJKL');
 print_r($request);

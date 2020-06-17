@@ -8,7 +8,6 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     123456789
 );
 
-//B72731-9EBE7
 $request = $client->bulkProductsRequest();
 print_r($request);
 print_r($client->getErrors());

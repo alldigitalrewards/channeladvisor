@@ -6,7 +6,7 @@ use AllDigitalRewards\ChannelAdvisor\Entities\AbstractEntity;
 
 abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \Countable
 {
-    const NEXT_LINK_NAME = "@odata.nextLink";
+    protected const NEXT_LINK_NAME = "@odata.nextLink";
     /**
      * @var string
      */

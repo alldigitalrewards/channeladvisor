@@ -7,7 +7,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     "SHARED_SECRET",
     123456789
 );
-$cancelled = $client->cancelOrder(12242713);
+$cancelled = $client->cancelOrder(1234567);
 
 var_dump($cancelled);
 print_r($client->getErrors());

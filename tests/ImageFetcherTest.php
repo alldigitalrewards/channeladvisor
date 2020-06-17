@@ -1,8 +1,7 @@
 <?php
 
-namespace AllDigitalRewards\CashStar;
+namespace AllDigitalRewards\ChannelAdvisor;
 
-use AllDigitalRewards\ChannelAdvisor\Client;
 use AllDigitalRewards\ChannelAdvisor\Collection\ImageCollection;
 use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
 use AllDigitalRewards\ChannelAdvisor\Entities\Image;

@@ -8,7 +8,7 @@ $client = new \AllDigitalRewards\ChannelAdvisor\Client(
     123456789
 );
 
-$fulfillment = $client->getFulfillment(12236137);
+$fulfillment = $client->getFulfillment(123456789);
 
 var_dump($fulfillment);
 print_r($client->getErrors());

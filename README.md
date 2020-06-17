@@ -31,6 +31,8 @@ to obtain an instance of the ChannelAdvisor client.:
 * CHANNELADVISOR_REFRESH_TOKEN
 * CHANNELADVISOR_APPLICATION_ID
 * CHANNELADVISOR_SHARED_SECRET 
+* CHANNELADVISOR_PROFILE_ID
+
 ```php
 <?php
 $client = \AllDigitalRewards\ChannelAdvisor\ClientFactory::getClient();
