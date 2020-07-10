@@ -419,6 +419,8 @@ class Client
         $order['BillingStateOrProvince'] = "AZ";
         $order['BillingPostalCode'] = "86403";
         $order['BillingCountry'] = "US";
+        $order['CheckoutStatus'] = "Completed";
+        $order['PaymentStatus'] = "Cleared";
 
         $response = $this->sendRequest(
             'POST',
