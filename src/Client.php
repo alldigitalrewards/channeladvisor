@@ -592,7 +592,7 @@ class Client
      */
     private function validateResponse($token)
     {
-        if (isset($token->error)) {
+        if (empty($token->error) === false) {
             throw new Exception($token->error);
         }
         if (empty($token->accessToken)) {
