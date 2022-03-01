@@ -595,7 +595,7 @@ class Client
         if (empty($token->error) === false) {
             throw new Exception($token->error);
         }
-        if (empty($token->accessToken)) {
+        if (empty($token->access_token)) {
             throw new Exception('Failed to fetch Access Token');
         }
     }
