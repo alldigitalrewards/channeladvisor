@@ -23,7 +23,7 @@ abstract class AbstractEntity
             }
 
             if (strpos(strtolower($key), 'date') !== false) {
-                $value = new \DateTime($value);
+                $value = new() \DateTime($value);
             }
 
             $setterName = $this->getSetterMethod($key);

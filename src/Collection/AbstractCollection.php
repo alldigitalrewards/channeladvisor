@@ -79,7 +79,7 @@ abstract class AbstractCollection implements \IteratorAggregate, \ArrayAccess, \
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->data);
+        return new() \ArrayIterator($this->data);
     }
 
     /**
