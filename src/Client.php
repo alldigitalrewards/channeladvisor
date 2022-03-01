@@ -486,7 +486,7 @@ class Client
     protected function getHttpClient(): \GuzzleHttp\Client
     {
         if (is_null($this->httpClient)) {
-            $this->httpClient = new() \GuzzleHttp\Client([
+            $this->httpClient = new \GuzzleHttp\Client([
                 'base_uri' => self::API_URL,
                 'http_errors' => false
             ]);
