@@ -11,6 +11,7 @@ use AllDigitalRewards\ChannelAdvisor\Entities\AccessToken;
 use AllDigitalRewards\ChannelAdvisor\Entities\BulkProductRequestResponse;
 use AllDigitalRewards\ChannelAdvisor\Entities\Order;
 use AllDigitalRewards\ChannelAdvisor\Entities\Product;
+use Exception;
 
 class Client
 {
@@ -128,6 +129,7 @@ class Client
 
     /**
      * @throws ApiException
+     * @throws Exception
      */
     public function bulkProductsRequest()
     {
@@ -162,6 +164,7 @@ class Client
      * @param string $token
      * @return BulkProductRequestResponse
      * @throws ApiException
+     * @throws Exception
      */
     public function bulkProductRequestStatus(string $token)
     {
@@ -300,6 +303,7 @@ class Client
     /**
      * @param int $orderId
      * @return bool
+     * @throws Exception
      */
     public function cancelOrder(int $orderId)
     {
@@ -337,7 +341,7 @@ class Client
     /**
      * @param int $id
      * @return OrderItemCollection
-     * @throws \Exception
+     * @throws Exception
      */
     public function getOrderItems(int $id)
     {
@@ -357,6 +361,7 @@ class Client
 
     /**
      * @return FulfillmentCollection|null
+     * @throws Exception
      */
     public function getFulfillments()
     {
@@ -374,6 +379,7 @@ class Client
     /**
      * @param int $orderId
      * @return FulfillmentCollection|null
+     * @throws Exception
      */
     public function getFulfillment(int $orderId)
     {
@@ -398,6 +404,7 @@ class Client
      * @param $order
      * @return Order
      * @throws ApiException
+     * @throws Exception
      */
     public function createOrder($order)
     {
@@ -465,7 +472,7 @@ class Client
             }
 
             $this->buildErrorsArray($jsonObj);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             $this->errors[] = $e->getMessage();
         }
         return null;
@@ -498,6 +505,7 @@ class Client
 
     /**
      * @return AccessToken
+     * @throws Exception
      */
     public function getAccessToken()
     {
@@ -510,6 +518,7 @@ class Client
 
     /**
      * @return string
+     * @throws Exception
      */
     protected function getAccessTokenAuthorizationHeader(): string
     {
@@ -517,36 +526,33 @@ class Client
     }
 
     /**
-     * @return AccessToken|null
+     * @return AccessToken
+     * @throws Exception
      */
-    private function requestAccessToken(): ?AccessToken
+    private function requestAccessToken(): AccessToken
     {
         $client_id = base64_encode("$this->applicationId:$this->sharedSecret");
 
-        try {
-            $response = $this->getHttpClient()->request(
-                'POST',
-                self::API_URL . '/oauth2/token',
-                [
-                    'headers' => [
-                        'Accept' => 'application/json',
-                        'Content-Type' => 'text/plain',
-                        'Authorization' => 'Basic ' . $client_id,
-                        'Cache-Control' => 'no-cache'
-                    ],
-                    'form_params' => [
-                        'grant_type' => 'refresh_token',
-                        'refresh_token' => $this->refreshToken
-                    ]
+        $response = $this->getHttpClient()->request(
+            'POST',
+            self::API_URL . '/oauth2/token',
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'text/plain',
+                    'Authorization' => 'Basic ' . $client_id,
+                    'Cache-Control' => 'no-cache'
+                ],
+                'form_params' => [
+                    'grant_type' => 'refresh_token',
+                    'refresh_token' => $this->refreshToken
                 ]
-            );
+            ]
+        );
 
-            $token = json_decode($response->getBody());
-            return new AccessToken($token);
-        } catch (\Exception $exception) {
-            $this->errors[] = $exception->getMessage();
-        }
-        return null;
+        $token = json_decode($response->getBody());
+        $this->validateResponse($token);
+        return new AccessToken($token);
     }
 
     public function getErrors(): array
@@ -578,6 +584,19 @@ class Client
                 $this->errors[] = $k === 'Message' ? $v : $v['message'];
                 continue;
             }
+        }
+    }
+
+    /**
+     * @throws Exception
+     */
+    private function validateResponse($token)
+    {
+        if (empty($token->error) === false) {
+            throw new Exception($token->error);
+        }
+        if (empty($token->accessToken)) {
+            throw new Exception('Failed to fetch Access Token');
         }
     }
 }
