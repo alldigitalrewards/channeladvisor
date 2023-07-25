@@ -900,9 +900,9 @@ class Product extends AbstractEntity
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         if (is_null($this->Title) === false) {
             return str_replace("'", "&#39;", $this->Title);
