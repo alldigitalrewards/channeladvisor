@@ -7,7 +7,7 @@
         "ChannelAdvisor"
     ],
     "require": {
-        "php" : "^8.2",
+        "php" : ">=7.1",
         "psr/container": "^2.0",
         "guzzlehttp/guzzle": "^7.7",
         "ext-json": "*"
